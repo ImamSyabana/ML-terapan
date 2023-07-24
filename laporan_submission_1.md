@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Model Machine Learning untuk Memprediksi Harga Runah  - Muhammad Imam Ariq Sya'bana
 
 ## Domain Proyek
 
@@ -8,7 +8,7 @@ Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek
 - Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
 - Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
   
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
+  Format Referensi: [Judul Referensi](https://mpra.ub.uni-muenchen.de/id/eprint/105961) 
 
 ## Business Understanding
 
