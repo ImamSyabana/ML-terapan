@@ -1,12 +1,12 @@
-# Laporan Proyek Model Machine Learning untuk Memprediksi Harga Runah  - Muhammad Imam Ariq Sya'bana
+# Laporan Proyek Model Pembelajaran Mesin untuk Memprediksi Harga Runah  - Muhammad Imam Ariq Sya'bana
 
 ## Domain Proyek
 
-Bubble economy di Jepang merupakan periode pertumbuhan ekonomi yang sangat cepat dan spektakuler, di mana harga aset seperti tanah dan properti mengalami kenaikan yang tajam sebelum akhirnya mengalami kejatuhan yang dramatis. Oleh karena itu, penting bagi para pembeli rumah dan para pemangku kepentingan di pasar perumahan untuk dapat memahami dan mengantisipasi kemungkinan terjadinya lonjakan harga yang signifikan.
+*Bubble economy* di Jepang merupakan periode pertumbuhan ekonomi yang sangat cepat dan spektakuler, di mana harga aset seperti tanah dan properti mengalami kenaikan yang tajam sebelum akhirnya mengalami kejatuhan yang dramatis. Oleh karena itu, penting bagi para pembeli rumah dan para pemangku kepentingan di pasar perumahan untuk dapat memahami dan mengantisipasi kemungkinan terjadinya lonjakan harga yang signifikan.
 
-Projek ini bertujuan untuk membangun model machine learning yang dapat memprediksi harga rumah di masa depan dan mengidentifikasi kemungkinan adanya lonjakan harga rumah yang tinggi seperti yang terjadi pada bubble economy di Jepang pada tahun 1980-an.
+Projek ini bertujuan untuk membangun model *machine learning* yang dapat memprediksi harga rumah di masa depan dan mengidentifikasi kemungkinan adanya lonjakan harga rumah yang tinggi seperti yang terjadi pada *bubble economy* di Jepang pada tahun 1980-an.
 
-Bubble economy adalah kenaikan harga asset yang dampaknya cukup luas untuk suatu perekonomian negara. Karena kasus di Jepang 1984 properti adalah aset yang banyak dimiliki banyak orang maka jika harga nya naik drastis dan selanjutnya turun drastis dapat memengaruhi ekonomi sosial negara. Buble economy yang membuat harga aset meningkat bukan didasarkan pada nilai intrinsiknya, melainkan pada spekulasi masyarakat yang ingin berinvestasi. 
+*Bubble economy* adalah kenaikan harga asset yang dampaknya cukup luas untuk suatu perekonomian negara. Karena kasus di Jepang pada tahun 1984 properti adalah aset yang banyak dimiliki banyak orang maka jika harga nya naik drastis dan selanjutnya turun drastis dapat memengaruhi ekonomi sosial negara. *Buble economy* yang membuat harga aset meningkat bukan didasarkan pada nilai intrinsiknya, melainkan pada spekulasi masyarakat yang ingin berinvestasi. 
 
 Saat gelembung tumbuh harga-harga aset sudah pasti naik drastis sehingga lebih banyak investor tertarik ke pasar, yang menyebabkan kenaikan harga lebih lanjut dan menyebabkan keuntungan bagi investor. Tetapi untuk masyarakat yang benar-benar membutuhkan rumah untuk kebutuhan bukan untuk investasi akan merasa sangat keberatan karena harga-harga rumah sudah sangat tinggi. Maka dari itu akan terjadi penurunan anjlok harga aset untuk membuat harga rumah normal kembali yang disebabkan oleh peraturan pemerintah, sehingga menghasilkan kerugian pada sisi investor karena harga jual yang turun sangat jauh dibawah saat mereka membeli harga aset tersebut saat sebelum anjlok, ditambah banyak investor yang berinvestasi dengan menggunakan dana pinjaman dari bank dan karena harga aset yang dibeli turun drastis maka mereka tidak dapat melunasi pinjamannya menyebabkan banyak bank yang mengalami kebangkrutan sehingga menyebabkakn penurunan pertumbuhan ekonomi yang signifikan.
 
@@ -17,6 +17,8 @@ Saat gelembung tumbuh harga-harga aset sudah pasti naik drastis sehingga lebih b
 
 
 ## Business Understanding
+
+*Bubble Economy* dapat menyebabkan peningkatan harga rumah yang signifikan, sehingga menarik banyak investor ke pasar perumahan dan menciptakan keuntungan besar bagi mereka. Namun, di sisi lain, masyarakat yang benar-benar membutuhkan rumah untuk kebutuhan bukan untuk tujuan investasi akan merasa kesulitan dan terbebani dengan harga rumah yang sangat tinggi. *Bubble Economy* yang terjadi di Jepang dapat dijadikan contoh pengalaman buruk untuk negara-negara lain dengan cara mempelajari apa yang terjadi dimasa lalu. Pemerintah dan para pemangku kepentingan dapat mencari tahu cara untuk mencegah lonjakan harga terjadi kembali dengan menormalkan harga sebelum harga rumah memasuki periode *bubble economy*. Sebab jika harga-harga aset properti sudah muncul indikasi-indikasi akan melonjak, jika tidak dicegah masyarakat akan mengalami hal yang serupa seperti yang dialami masyarakat Jepang pada tahun 1980-an. Maka dari itu dengan membuat model pembelajaran mesin yang dapat memprediksi data *time series* tentang harga rumah dengan hasil prediksi yang dapat diandalkan, pemerintah dan para pemangku kepentingan lainnya dapat memprediksi apakah akan ada lonjakan harga dimasa depan. Jika harga aset rumah dan bangunan dapat diprediksi, dengan begitu pemerintah dan para pemangku kepentingan dapat membuat langkat preventif dengan mengeluarkan peraturan baik pajak dan lain-lain untuk menekan masyarakat yang spekulatif ingini memiliki aset sebanyak-banyaknya untuk investasi.  
 
 ### Problem Statements
 
