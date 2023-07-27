@@ -39,20 +39,46 @@ Dataset yang Saya gunakan pada projek ini berisi informasi historis tentang harg
 
 House Property Sales Time Series (https://www.kaggle.com/datasets/htagholdings/property-sales?select=raw_sales.csv).
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
+### Variabel-variabel pada House Property Sales Time Series dataset adalah sebagai berikut:
 - datesold : merupakan tipe data datetime yang menunjukkan kapan data rumah tersebut dijual.
 - postcode : berupa empat digit kode pos dari distrik tempat properti tersebut dijual.
 - price : Harga jual properti yang telah berhasil terjual.
 - propertyType : Tipe properti i.e. house atau unit
 - bedrooms : Jumlah kamar tidur
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
 
-Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan built-in function .info() kita bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bosa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari data seperti percentile, mean, standar deviasi, jumlah data, min, dan max.
+Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan fungsi bawaan dari python yaitu .info() kita bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bisa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. 
+
+| Column | Non-Null Count | Dtype |
+|:----------------:|:---------------:|:---------------:|
+| postcode     | 29580 non-null    | int64     |
+| price     | 29580 non-null    | int64     |
+| propertyType       | 29580 non-null   | object    |
+| bedrooms       | 29580 non-null   | int64     |
+
+
+Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari data seperti percentile, mean, standar deviasi, jumlah data, min, dan max.
+
+|  | postcode | price | bedrooms |
+|:----------------:|:---------------:|:---------------:|:---------------:|
+| count     | 29580.000000    | 29580.000000     | 29580.000000|
+| mean     | 2730.249730    | 6.097363e+05     |3.250169|
+| std       | 146.717292   | 2.817079e+05    |0.951275|
+| min       | 2600.000000   | 5.650000e+04    |0.000000|
+| 25%       | 2607.000000  | 4.400000e+05     |3.000000|
+| 50%       | 2615.000000   | 5.500000e+05     |3.000000|
+| 75%       | 2905.000000   | 7.050000e+05     |4.000000|
+| max       | 2914.000000   | 8.000000e+06     |5.000000|
 
 Untuk atirbut propertyType dilakukan visualisasi jumlah data rumah yang bertipe house dan unit. Didapatkan bahwa jumlah data yang bertipe house dan unit tidak seimbang, maka dari itu pada tahap selanjutnya atribut property type tidak dimasukkan untuk perhitungan karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang.
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/def5a074-4318-4f81-a35b-503cb777854c)
+
+|  | jumlah sampel | presentase |
+|:----------------:|:---------------:|:---------------:|
+| house     | 24552            | 83.0     |
+| unit    |5028            | 17.0     |
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/f575620c-ffa3-4372-8010-529b46b5073a)
+
 
 Selanjutnya untuk mengetahui hubungan masing-masing fitur terhadap satu sama lain dihitung korelasinya. Menghasilkan bahwa fitur price memiliki korelasi positif terhadap fitur jumlah bedrooms. Karena terdapat sejumlah data yang tidak konsisten, dalam arti ada data yang jumlah bedrooms yang tinggi tetapi memiliki price yang tinggi dan ada juga rendah. Dengan begitu nilai korelasi tidak mendekati positif satu, hanya bernilai 0.48
 
