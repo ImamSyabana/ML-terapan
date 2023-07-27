@@ -1,4 +1,4 @@
-# Laporan Proyek Model Pembelajaran Mesin untuk Memprediksi Harga Runah  - Muhammad Imam Ariq Sya'bana
+# Laporan Proyek Model Pembelajaran Mesin untuk Memprediksi Harga Rumah  - Muhammad Imam Ariq Sya'bana
 
 ## Domain Proyek
 
@@ -42,7 +42,7 @@ House Property Sales Time Series (https://www.kaggle.com/datasets/htagholdings/p
 ### Variabel-variabel pada House Property Sales Time Series dataset adalah sebagai berikut:
 - datesold : merupakan tipe data datetime yang menunjukkan kapan data rumah tersebut dijual.
 - postcode : berupa empat digit kode pos dari distrik tempat properti tersebut dijual.
-- price : Harga jual properti yang telah berhasil terjual.
+- price : Harga jual properti yang telah berhasil terjual (Mata uang dari harga rumah di atribut *price* tidak dijelaskan dalam dataset).
 - propertyType : Tipe properti i.e. house atau unit
 - bedrooms : Jumlah kamar tidur
 
@@ -70,17 +70,39 @@ Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari
 | 75%       | 2905.000000   | 7.050000e+05     |4.000000|
 | max       | 2914.000000   | 8.000000e+06     |5.000000|
 
+Pada notebooks dilakukan visualisasi untuk membandingkan rerata data keseluruhan harga rumah yang bertipe *house* dan yang bertipe *unit*. Didapatkan bahwa rerata harga rumah yang bertipe *house* lebih tinggi daripada rerata harga rumah yang bertipe *unit*.
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/e5edcf5c-d69b-4a54-872a-ef0784a36018)
+
 Untuk atirbut propertyType dilakukan visualisasi jumlah data rumah yang bertipe house dan unit. Didapatkan bahwa jumlah data yang bertipe house dan unit tidak seimbang, maka dari itu pada tahap selanjutnya atribut property type tidak dimasukkan untuk perhitungan karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang.
+
+Fitur *propertyType* menunjukkan bahwa tipe *unit* memiliki harga rerata yang lebih rendah dari pada tipe *house* yang memiliki harga yang lebih tinggi. Perbedaan rerata harga unit hanya tertinggal sekitar kurang dari 30% dari harga rerate house. Hal tersebut juga mungkin bisa disebabkan oleh lokasi dari tipe unit yang rata-rata memiliki lokasi yang sangat berbeda dibandingkan dengan tipe house. Hal ini berarti bahwa fitur *propertyType* memiliki pengaruh yang rendah terhadap harga.
 
 |  | jumlah sampel | presentase |
 |:----------------:|:---------------:|:---------------:|
 | house     | 24552            | 83.0     |
 | unit    |5028            | 17.0     |
 
+Ditambah jika kita melihat sebaran data untuk tipe *unit* dan tipe *house* didapat bahwa jumlah data rumah dengan tipe *unit* hanya 17% dari keseluruhan data, sedangkan rumah dengan tipe *house* memiliki 83%. Ketidakseimbangan distribusi data ini membuat atribut *propertyType* tidak dapat digunakan untuk menebak prediksi harga rumah karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang. Maka dari itu selanjutnya atribut tipe properti tidak akan digunakan.
+
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/f575620c-ffa3-4372-8010-529b46b5073a)
+
+Pada atribut fitur price dilakukan visualisasi data, visualisasi harga yang dilakukan adalah dengan memanfaatkan histogram untuk mengetahui jumlah data pada masing-masing rentang harga rumah yang ada didataset.
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/61b674c8-0fb6-4e51-8d41-765b7a1da51b)
+
+Pada atribut fitur bedrooms dilakukan visualisasi data, visualisasi harga yang dilakukan adalah dengan memanfaatkan histogram kembali untuk mengetahui sebaran nilai jumlah kamar tidur setiap data rumah yang ada didataset. Dengan visualisasi ini kita dapat mengetahui rumah dengan jumlah kamar tidur berapa yang mendominasi dataset.
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/02ac47f6-b54b-49f1-8fb3-f7f5f9104af8)
 
 
 Selanjutnya untuk mengetahui hubungan masing-masing fitur terhadap satu sama lain dihitung korelasinya. Menghasilkan bahwa fitur price memiliki korelasi positif terhadap fitur jumlah bedrooms. Karena terdapat sejumlah data yang tidak konsisten, dalam arti ada data yang jumlah bedrooms yang tinggi tetapi memiliki price yang tinggi dan ada juga rendah. Dengan begitu nilai korelasi tidak mendekati positif satu, hanya bernilai 0.48
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/6dc000d1-099f-4837-96ed-39ad9b9e16dc)
+
+Hasil nilai korelasi dan visualisasi yang ada di atas didapatkan dari pemetaan nilai dari masing-masing fitur yang berlainan didalam scatterplot dibawah ini. Dapat dilihat kenapa korelasi antara fitur *bedrooms* dan *price* memiliki nilai korelasi postif dan tidak mendekati satu. Nilai korelasi 0.48 didapat karena peningkatan harga diiringi dengan peningkatan jumlah *bedroom*. Walaupun terdapat pula jumlah *bedrooms* yang tinggi tetapi memiliki *price* yang paling rendah, tetapi pola yang bisa dipastikan adalah tidak mungkin jumlah *bedrooms* yang rendah memiliki harga yang tinggi.
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/7f9f0bbe-dbdd-4c75-9fb7-25c0ed399810)
 
 ## Data Preparation
 
