@@ -114,7 +114,8 @@ Metode dalam membuat data yang tidak regular menjadi regular adalah dengan mengh
 
 Algoritma yang digunakan untuk melakukan hal tersebut adalah dengan memanfaatkan *method* ```resample()``` yang ada di dalam *library* pandas. *Method* ```resample()``` merupakan *method* di dalam *library* pandas yang digunakan untuk mengubah interval frekuensi data berjenis *time-series*, maksudnya adalah dengan menggunakan *method* ini kita dapat merubah *dataset* dari frequensi awal ke frequensi tertentu. Dalam kasus kali ini penggunaannya digunakan untuk merubah *dataset* yang memiliki frequensi yang tidak menentu atau iregular menjadi *dataset* yang frequensinya mingguan.
 
-Metode ini bekerja dengan cara menyamakan frequensi yang ada pada dataset dengan cara membuat interval indeks yang berupa *timestamps* atau *dates* memiliki jarak yang sama.
+Metode ini bekerja dengan cara menyamakan frequensi yang ada pada dataset dengan cara membuat interval indeks yang berupa *timestamps* atau *dates* memiliki jarak yang sama. *Method* ini menerima satu argumen bertipe *string* yang merepresentasikan periode waktu seperti dalam projek kali ini 'W' merepresentasikan minggu, ada pula 'D' yang merepresentasikan hari, dan 'M' yang merepresentasikan bulan. Kemudian,  ```resample()``` juga dapat di tambah dengan fungsi lain untuk dapat meringkas data ke frequensi yang diinginkan. Beberapa fungsi agregasi yang sering dipakai adalah ```mean()```, ```sum()```, ```max()```, ```min()```, ```count()```, dan lain-lain. Fungsi-fungsi ini disambung dengan *method* ```resample()```. Dengan menggunakan fungsi-fungsi tersebut kita dapat membuat data *timeseries* yang iregular menjadi regular dengan meringkas data-data yang ada pada interval tertentu dengan mengambil rerata, jumlah, nilai maksimum atau minimum, dan sebagainya.
+
 ```
 import pandas as pd
 house_price_df = house_price_df.resample('w').mean()
@@ -127,9 +128,47 @@ Setelah membuat data menjadi regular, jumlah data akan berkurang dari sebelumnya
 
 - 2. Memotong-motong data timeseries menjadi ke bentuk window sebagai independent variable dan horizon sebagai dependent variable
  
-Untuk dapat membuat data timeseries dapat dimasukkan ke dalam machine learning supervised learning, diperlikan metode windowing. window dari jangka waktu dimasa lalu digunakan untuk menebak masa depan (horizon)
+Untuk dapat membuat data timeseries dapat dimasukkan ke dalam machine learning supervised learning, diperlikan metode windowing. window dari jangka waktu dimasa lalu digunakan untuk menebak masa depan (horizon).
+
+Pada program telah didefinisikan nilai untuk menentukan interval window dan horizon atau seberapa jauh prediksi ke masa depan. 
+
+```
+HORIZON = 1 # menebak price rata-rata pada 1 minggu kedepannya
+WINDOW_SIZE = 8 #menebak price 2 bulan sebelumnya
+```
 
 Untuk feature berisi oleh window harga pada beberapa waktu kebelakang sesuai dengan nilai WINDOW_SIZE yang didefinisikan ditambah dengan jumlah bedrooms karena ini merupakan multivariate time series. Lalu, untuk label diisi oleh keterangan price untuk beberapa waktu kedepan sesuai dengan nilai HORIZON yang didefinisikan sebelumnya.
+
+Untuk melakukan tersebut di dalam Python kode berikut ini berperan dalam membuat *dataset* menjadi format *window* dan *horizon*. *Window* berisi dengan sejumlah data yang telah terdefinisi serta berurutan. Kemudian, *horizon* adalah rangkaian data terurut yang ada setelah *window*
+
+```
+for i in range(WINDOW_SIZE): # Shift values for each step in WINDOW_SIZE
+  house_prices_windowed[f"Price+{i+1}"] = house_prices_windowed["price"].shift(periods=i+1)
+house_prices_windowed.head(10)
+```
+
+Pertama, kita menentukan iterasi sebanyak dengan ukuran dari WINDOW_SIZE yang sudah ditentukan. Kemudian pada bagian ```house_prices_windowed[f"Price+{i+1}"]``` akan membuat kolom-kolom baru di *dataframe* ```house_price_windowed```. Kolom-kolom tersebut akan menjadi Price+1, Price+2, dan seterusnya sampai Price+WINDOW_SIZE. Selanjutnya, pada bagian ```house_prices_windowed["price"].shift(periods=i+1)``` melakukan operasi untuk menggeser window sebanyak satu data, dapat dilihat dari parameter ```periods``` yang diisi dengan nilai i+1. *Methods* ```shift```digunakan untuk menggeser nilai-nilai yang ada di kolom ke arah data-data selanjutnya sebanyak satu langkah dalam kasus ini. 
+
+
+Setelah melakukan semua hal tersebut, hasil window adalah sebagai berikut,
+
+| datesold   | bedrooms | Price+1     | Price+2    | Price+3     | Price+4     | Price+5  | Price+6   | Price+7  | Price+8  |
+|:----------:|:--------:|:-----------:|:----------:|:-----------:|:-----------:|:--------:|:---------:|:--------:|:--------:|
+| 2007-07-01 | 3.333333 | 339500.000  | 1.530e+06  | 3.990e+05   | 4.650e+05   | 310000.0  | 354000.0  | 290000.0 | 525000.0 |
+| 2007-07-08 | 3.333333 | 520333.344  | 3.395e+05  | 1.530e+06   | 3.990e+05   | 465000.0  | 310000.0  | 354000.0 | 290000.0 |
+| 2007-07-15 | 3.000000 | 533000.000  | 5.203e+05  | 3.395e+05   | 1.530e+06   | 399000.0  | 465000.0  | 310000.0 | 354000.0 |
+| 2007-07-22 | 3.142857 | 603750.000  | 5.330e+05  | 5.203e+05   | 3.395e+05   | 1530000.0 | 399000.0  | 465000.0 | 310000.0 |
+| 2007-08-05 | 3.333333 | 687714.313  | 6.037e+05  | 5.330e+05   | 5.203e+05   | 339500.0  | 1530000.0 | 399000.0 | 465000.0 |
+
+Dan hasil dari Horizon untuk lima horizon pertama yang bernilai satu adalah seperti berikut,
+
+|   datesold   |     price     |
+|:------------:|:-------------:|
+| 2007-07-01   | 520333.34375  |
+| 2007-07-08   | 533000.00000  |
+| 2007-07-15   | 603750.00000  |
+| 2007-07-22   | 687714.31250  |
+| 2007-08-05   | 488833.34375  |
 
 ## Modeling
 
