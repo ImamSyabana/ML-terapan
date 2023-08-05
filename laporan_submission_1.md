@@ -112,6 +112,17 @@ Data time series yang didapat dari kaggle ternyata irregular, artinya selang ant
 
 Metode dalam membuat data yang tidak regular menjadi regular adalah dengan menghitung nilai mean pada data-data yang terletak dalam rentang waktu yang ditentukan. Dibawah ini selang waktu yang ditentukan adalah mingguan, jadi data-data yang berada pada minggu yang sama akan diratakan dan menjadi satu data baru yang merepresentasikan harga rumah rata-rata yang ada dihari-hari pada minggu tersebut. Ini membuat data yang sebelumnya perhari yang tidak memiliki pola, sekarang menjadi perminggu dan sudah teratur tanpa menghilangkan informasi data secara keseluruhan karena data yang perhari memiliki peran untuk menentukan nilai rerata perminggu.
 
+Algoritma yang digunakan untuk melakukan hal tersebut adalah dengan memanfaatkan *method* ```resample()``` yang ada di dalam *library* pandas. *Method* ```resample()``` merupakan *method* di dalam *library* pandas yang digunakan untuk mengubah interval frekuensi data berjenis *time-series*, maksudnya adalah dengan menggunakan *method* ini kita dapat merubah *dataset* dari frequensi awal ke frequensi tertentu. Dalam kasus kali ini penggunaannya digunakan untuk merubah *dataset* yang memiliki frequensi yang tidak menentu atau iregular menjadi *dataset* yang frequensinya mingguan.
+
+Metode ini bekerja dengan cara menyamakan frequensi yang ada pada dataset dengan cara membuat interval indeks yang berupa *timestamps* atau *dates* memiliki jarak yang sama.
+```
+import pandas as pd
+house_price_df = house_price_df.resample('w').mean()
+house_price_df.head(20)
+
+house_price_df
+```
+
 Setelah membuat data menjadi regular, jumlah data akan berkurang dari sebelumnya dan masing-masing satu data merepresentasikan harga pada tiap-tiap minggunya.
 
 - 2. Memotong-motong data timeseries menjadi ke bentuk window sebagai independent variable dan horizon sebagai dependent variable
