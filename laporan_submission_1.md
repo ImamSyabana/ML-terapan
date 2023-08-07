@@ -49,6 +49,8 @@ House Property Sales Time Series (https://www.kaggle.com/datasets/htagholdings/p
 
 Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan fungsi bawaan dari python yaitu .info() kita bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bisa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. 
 
+Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada dataset *house price*
+
 | Column | Non-Null Count | Dtype |
 |:----------------:|:---------------:|:---------------:|
 | postcode     | 29580 non-null    | int64     |
@@ -57,7 +59,10 @@ Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan bebe
 | bedrooms       | 29580 non-null   | int64     |
 
 
-Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari data seperti percentile, mean, standar deviasi, jumlah data, min, dan max.
+
+Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari data seperti percentile, mean, standar deviasi, jumlah data, min, dan max. Hasil fungsi ini ditampilkan pada tabel 2 seperti berikut.
+
+Tabel 2. statistik dataset *house price* hasil dari fungsi *.describe()*
 
 |  | postcode | price | bedrooms |
 |:----------------:|:---------------:|:---------------:|:---------------:|
@@ -72,37 +77,48 @@ Kedua, dengan menggunakan .describe() kita dapat mengetahui statistik dasar dari
 
 Pada notebooks dilakukan visualisasi untuk membandingkan rerata data keseluruhan harga rumah yang bertipe *house* dan yang bertipe *unit*. Didapatkan bahwa rerata harga rumah yang bertipe *house* lebih tinggi daripada rerata harga rumah yang bertipe *unit*.
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/e5edcf5c-d69b-4a54-872a-ef0784a36018)
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/e5edcf5c-d69b-4a54-872a-ef0784a36018)Gambar 1. rerata harga terhadap *propertyType*
 
-Untuk atirbut propertyType dilakukan visualisasi jumlah data rumah yang bertipe house dan unit. Didapatkan bahwa jumlah data yang bertipe house dan unit tidak seimbang, maka dari itu pada tahap selanjutnya atribut property type tidak dimasukkan untuk perhitungan karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang.
+Untuk atirbut propertyType dilakukan visualisasi jumlah data rumah yang bertipe house dan unit. Dari visualisasi yang dilakukan pada Gambar 1, didapatkan bahwa jumlah data yang bertipe house dan unit tidak seimbang, maka dari itu pada tahap selanjutnya atribut property type tidak dimasukkan untuk perhitungan karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang.
 
 Fitur *propertyType* menunjukkan bahwa tipe *unit* memiliki harga rerata yang lebih rendah dari pada tipe *house* yang memiliki harga yang lebih tinggi. Perbedaan rerata harga unit hanya tertinggal sekitar kurang dari 30% dari harga rerate house. Hal tersebut juga mungkin bisa disebabkan oleh lokasi dari tipe unit yang rata-rata memiliki lokasi yang sangat berbeda dibandingkan dengan tipe house. Hal ini berarti bahwa fitur *propertyType* memiliki pengaruh yang rendah terhadap harga.
+
+Tabel 3. Jumlah sebaran data rumah bertipe *house* dan *unit* 
 
 |  | jumlah sampel | presentase |
 |:----------------:|:---------------:|:---------------:|
 | house     | 24552            | 83.0     |
 | unit    |5028            | 17.0     |
 
-Ditambah jika kita melihat sebaran data untuk tipe *unit* dan tipe *house* didapat bahwa jumlah data rumah dengan tipe *unit* hanya 17% dari keseluruhan data, sedangkan rumah dengan tipe *house* memiliki 83%. Ketidakseimbangan distribusi data ini membuat atribut *propertyType* tidak dapat digunakan untuk menebak prediksi harga rumah karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang. Maka dari itu selanjutnya atribut tipe properti tidak akan digunakan.
+Ditambah jika kita melihat sebaran data untuk tipe *unit* dan tipe *house* yang ada pada tabel 2, didapat bahwa jumlah data rumah dengan tipe *unit* hanya 17% dari keseluruhan data, sedangkan rumah dengan tipe *house* memiliki 83%. Ketidakseimbangan distribusi data ini membuat atribut *propertyType* tidak dapat digunakan untuk menebak prediksi harga rumah karena dianggap tidak akan relevan karena distribusi data yang tidak seimbang. Maka dari itu selanjutnya atribut tipe properti tidak akan digunakan.
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/f575620c-ffa3-4372-8010-529b46b5073a)
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/f575620c-ffa3-4372-8010-529b46b5073a) 
 
-Pada atribut fitur price dilakukan visualisasi data, visualisasi harga yang dilakukan adalah dengan memanfaatkan histogram untuk mengetahui jumlah data pada masing-masing rentang harga rumah yang ada didataset.
+Gambar 2. Visualisasi histogram jumlah sebaran data rumah bertipe *house* dan *unit* 
+
+Pada atribut fitur price dilakukan visualisasi data seperti tampak di gambar 3, visualisasi harga yang dilakukan adalah dengan memanfaatkan histogram untuk mengetahui jumlah data pada masing-masing rentang harga rumah yang ada didataset.
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/61b674c8-0fb6-4e51-8d41-765b7a1da51b)
+
+Gambar 3. Visualisasi histogram sebaran harga rumah yang ada di dalam *dataset*
 
 Pada atribut fitur bedrooms dilakukan visualisasi data, visualisasi harga yang dilakukan adalah dengan memanfaatkan histogram kembali untuk mengetahui sebaran nilai jumlah kamar tidur setiap data rumah yang ada didataset. Dengan visualisasi ini kita dapat mengetahui rumah dengan jumlah kamar tidur berapa yang mendominasi dataset.
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/02ac47f6-b54b-49f1-8fb3-f7f5f9104af8)
 
+Gambar 4. Visualisasi histogram sebaran jumlah kamar tidur masing-masing data rumah pada di *dataset*
 
 Selanjutnya untuk mengetahui hubungan masing-masing fitur terhadap satu sama lain dihitung korelasinya. Menghasilkan bahwa fitur price memiliki korelasi positif terhadap fitur jumlah bedrooms. Karena terdapat sejumlah data yang tidak konsisten, dalam arti ada data yang jumlah bedrooms yang tinggi tetapi memiliki price yang tinggi dan ada juga rendah. Dengan begitu nilai korelasi tidak mendekati positif satu, hanya bernilai 0.48
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/6dc000d1-099f-4837-96ed-39ad9b9e16dc)
 
-Hasil nilai korelasi dan visualisasi yang ada di atas didapatkan dari pemetaan nilai dari masing-masing fitur yang berlainan didalam scatterplot dibawah ini. Dapat dilihat kenapa korelasi antara fitur *bedrooms* dan *price* memiliki nilai korelasi postif dan tidak mendekati satu. Nilai korelasi 0.48 didapat karena peningkatan harga diiringi dengan peningkatan jumlah *bedroom*. Walaupun terdapat pula jumlah *bedrooms* yang tinggi tetapi memiliki *price* yang paling rendah, tetapi pola yang bisa dipastikan adalah tidak mungkin jumlah *bedrooms* yang rendah memiliki harga yang tinggi.
+Gambar 5. Grafik korelasi antara fitur *bedroom*, *price*, dan *postcode*.
+
+Hasil nilai korelasi dan visualisasi yang ada pada gambar 5 di atas didapatkan dari pemetaan nilai dari masing-masing fitur yang berlainan didalam scatterplot dibawah ini. Dapat dilihat kenapa korelasi antara fitur *bedrooms* dan *price* memiliki nilai korelasi postif dan tidak mendekati satu. Nilai korelasi 0.48 didapat karena peningkatan harga diiringi dengan peningkatan jumlah *bedroom*. Walaupun terdapat pula jumlah *bedrooms* yang tinggi tetapi memiliki *price* yang paling rendah, tetapi pola yang bisa dipastikan adalah tidak mungkin jumlah *bedrooms* yang rendah memiliki harga yang tinggi.
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/7f9f0bbe-dbdd-4c75-9fb7-25c0ed399810)
+
+Gambar 6. Visualisasi grafik untuk mengamati hubungan antara fitur numerik.
 
 ## Data Preparation
 
@@ -150,7 +166,9 @@ house_prices_windowed.head(10)
 Pertama, kita menentukan iterasi sebanyak dengan ukuran dari WINDOW_SIZE yang sudah ditentukan. Kemudian pada bagian ```house_prices_windowed[f"Price+{i+1}"]``` akan membuat kolom-kolom baru di *dataframe* ```house_price_windowed```. Kolom-kolom tersebut akan menjadi Price+1, Price+2, dan seterusnya sampai Price+WINDOW_SIZE. Selanjutnya, pada bagian ```house_prices_windowed["price"].shift(periods=i+1)``` melakukan operasi untuk menggeser window sebanyak satu data, dapat dilihat dari parameter ```periods``` yang diisi dengan nilai i+1. *Methods* ```shift```digunakan untuk menggeser nilai-nilai yang ada di kolom ke arah data-data selanjutnya sebanyak satu langkah dalam kasus ini. 
 
 
-Setelah melakukan semua hal tersebut, hasil window adalah sebagai berikut,
+Setelah melakukan semua hal tersebut, hasil lima window pertama tertera pada tabel 4.
+
+Tabel 4. Hasil pemetaan dataset menjadi lima *WINDOW* pertama untuk digunakan pada tahap *modelling*.
 
 | datesold   | bedrooms | Price+1     | Price+2    | Price+3     | Price+4     | Price+5  | Price+6   | Price+7  | Price+8  |
 |:----------:|:--------:|:-----------:|:----------:|:-----------:|:-----------:|:--------:|:---------:|:--------:|:--------:|
@@ -160,7 +178,9 @@ Setelah melakukan semua hal tersebut, hasil window adalah sebagai berikut,
 | 2007-07-22 | 3.142857 | 603750.000  | 5.330e+05  | 5.203e+05   | 3.395e+05   | 1530000.0 | 399000.0  | 465000.0 | 310000.0 |
 | 2007-08-05 | 3.333333 | 687714.313  | 6.037e+05  | 5.330e+05   | 5.203e+05   | 339500.0  | 1530000.0 | 399000.0 | 465000.0 |
 
-Dan hasil dari Horizon untuk lima horizon pertama yang bernilai satu adalah seperti berikut,
+Dan hasil dari Horizon untuk lima horizon pertama yang bernilai satu tampak pada tabel 5.
+
+Tabel 5. Hasil pemetaan dataset menjadi lima *HORIZON* pertama untuk digunakan pada tahap *modelling*.
 
 |   datesold   |     price     |
 |:------------:|:-------------:|
@@ -178,13 +198,13 @@ Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi y
 
 Karena *metrics* yang digunakan untuk mengukur performa model masalah time series kali ini adalah MAE maka hasil training yang terbaik dari kedua model tersebut dapat ditentukan dengan menggunakan parameter loss dan validation loss. Parameter *Loss* adalah parameter yang mengukur sebaik apa model dapat memprediksi target nilai harga rumah sebenarnya pada *training data*. *Validation loss* adalah parameter yang mengukur sebaik mana model dapat memprediksi target nilai harga rumah sebenarnya pada *validation data* yang mana serangkaian data yang terpisah dari *training data*.
 
-Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang menggunakan layer *convolutional* atau *Conv1D layer*. Pada grafik terlihat nilai *loss* dan *validation loss* mampu konvergen lebih cepat daripada model yang menggunakan layer RNN, dapat dilihat pada tahap awal *epochs* sekitar epoch ke-15 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau sudah konvergen. 
+Gambar 7 dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang menggunakan layer *convolutional* atau *Conv1D layer*. Pada grafik terlihat nilai *loss* dan *validation loss* mampu konvergen lebih cepat daripada model yang menggunakan layer RNN, dapat dilihat pada tahap awal *epochs* sekitar epoch ke-15 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau sudah konvergen. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c)
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c) Gambar 7. Visualisasi hasil training model konvolusi yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing masing *epoch*
 
 Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang dilatih dengan menggunakan layer jenis RNN yaitu LSTM. Pada grafik terlihat nilai *loss* dan *validation loss* konvergen lebih lambat daripada model yang menggunakan layer konvolusi, dapat dilihat baru pada sekitar *epoch* ke-46 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau konvergen. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20)
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20) Gambar 8. Visualisasi hasil training model RNN yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing masing *epoch*
 
 Dari kedua grafik diatas dapat ditarik kesimpulan bahwa model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan kita akan menggunakan model konvolusi. Jika melihat dari grafik saja kurang dapat dilihat mana yang nilai MAE-nya lebih kecil karena selisih yang mendekati, maka dari itu kita akan menarik prediksi nilai MAE dan MSE dari pengujian dan validasi terhadap data validasi. Didapatkan bahwa sesuai dengan performa kecepatan konvergen pada kedua model, model yang lebih cepat konvergen memiliki performa yang lebih baik.  
 
@@ -239,7 +259,9 @@ y^i : Nilai prediksi dari model untuk titik data i.
 Setelah mengetahui bahwa model dengan menggunakan konvolusi bekerja lebih baik, selanjutnya adalah tahap memprediksi harga rumah di masa depan. Dalam proyek ini, model dites untuk memprediksi harga rumah untuk 48 minggu kedepan. Hasilnya adalah pada dua bulan pertama hasil prediksi masih tidak menunjukkan anomali, tetapi untuk prediksi minggu-minggu selanjutnya prediksi terus menerus naik dengan besar kenaikan yang sama. Hasil ini tidak wajar dan tidak dapat digunakan sebagai prediksi harga pada masa depan yang masih sangat jauh.
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/51b6e6b7-f63a-4fa2-8d3a-725c866996a8)
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2)
+
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2) Gambar 9. Prediksi harga rumah untuk 48 minggu ke depan
 
 Kesimpulannya adalah untuk memprediksi harga rumah yang jauh di masa depan, model akan bingung dan tidak dapat menentukan harga yang normal sehingga prediksi harga seakan-akan hanya tebakan saja. Sama seperti kita ingin memprediksi apakah bulan depan akan terjadi hujan atau tidak, pasti akan lebih sulit menebak terjadinya hujan satu bulan kedepan dibandingkan satu jam kedepan. 
 
