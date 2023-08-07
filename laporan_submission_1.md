@@ -176,8 +176,29 @@ Metode yang Saya pilih untuk menentukan metode machine learning terbaik untuk ka
 
 Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi yang menggunakan Conv1D berhasil memprediksi harga rumah yang mendekati ke harga aslinya lebih baik dari pada model Recurrent Neural Network yang menggunakan LSTM.
 
-Model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan kita akan menggunakan model konvolusi.
+Karena *metrics* yang digunakan untuk mengukur performa model masalah time series kali ini adalah MAE maka hasil training yang terbaik dari kedua model tersebut dapat ditentukan dengan menggunakan parameter loss dan validation loss. Parameter *Loss* adalah parameter yang mengukur sebaik apa model dapat memprediksi target nilai harga rumah sebenarnya pada *training data*. *Validation loss* adalah parameter yang mengukur sebaik mana model dapat memprediksi target nilai harga rumah sebenarnya pada *validation data* yang mana serangkaian data yang terpisah dari *training data*.
 
+Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang menggunakan layer *convolutional* atau *Conv1D layer*. Pada grafik terlihat nilai *loss* dan *validation loss* mampu konvergen lebih cepat daripada model yang menggunakan layer RNN, dapat dilihat pada tahap awal *epochs* sekitar epoch ke-15 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau sudah konvergen. 
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c)
+
+Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang dilatih dengan menggunakan layer jenis RNN yaitu LSTM. Pada grafik terlihat nilai *loss* dan *validation loss* konvergen lebih lambat daripada model yang menggunakan layer konvolusi, dapat dilihat baru pada sekitar *epoch* ke-46 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau konvergen. 
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20)
+
+Dari kedua grafik diatas dapat ditarik kesimpulan bahwa model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan kita akan menggunakan model konvolusi. Jika melihat dari grafik saja kurang dapat dilihat mana yang nilai MAE-nya lebih kecil karena selisih yang mendekati, maka dari itu kita akan menarik prediksi nilai MAE dan MSE dari pengujian dan validasi terhadap data validasi. Didapatkan bahwa sesuai dengan performa kecepatan konvergen pada kedua model, model yang lebih cepat konvergen memiliki performa yang lebih baik.  
+
+```
+model_conv_results = evaluate_preds(y_true = tf.squeeze(test_labels),
+                                    y_pred = model_conv_prediksi)
+
+model_conv_results = {'mae': 39565.105, 'mse': 3369372200.0}
+
+model_rnn_results = evaluate_preds(y_true = tf.squeeze(test_labels),
+                                    y_pred = model_rnn_prediksi)
+
+model_rnn_results = {'mae': 46709.727, 'mse': 4563947500.0}
+```
 
 ## Evaluation
 
@@ -187,7 +208,9 @@ Model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil
 
 **MAE** mengukur rata-rata dari selisih absolut antara nilai prediksi dan nilai sebenarnya. Secara matematis, untuk setiap titik data i, MAE dihitung sebagai:
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/92fb97ce-2385-4c2f-b127-3b849da528be)
+
+MAE = $\frac{1}{n} \Sigma_{i=1}^{n} |y_i - \hat{y}_i|$
+
 
 n: Jumlah total titik data dalam data uji atau validasi.
 
@@ -199,7 +222,9 @@ y^i : Nilai prediksi dari model untuk titik data i.
 
 **MSE** mengukur rata-rata dari kuadrat selisih antara nilai prediksi dan nilai sebenarnya. Ini berfungsi untuk memberikan bobot lebih besar pada kesalahan yang lebih besar. MSE dihitung sebagai:
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/5f72f679-6219-4e69-a738-90835905b2b2)
+
+MSE = $\frac{1}{n} \Sigma_{i=1}^n({y_i}-\hat{y}_i)^2$
+
 
 n: Jumlah total titik data dalam data uji atau validasi.
 
