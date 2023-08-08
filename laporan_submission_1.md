@@ -232,11 +232,11 @@ model_rnn_results = {'mae': 46709.727, 'mse': 4563947500.0}
 MAE = $\frac{1}{n} \Sigma_{i=1}^{n} |y_i - \hat{y}_i|$
 
 
-n: Jumlah total titik data dalam data uji atau validasi.
+${n}$: Jumlah total titik data dalam data uji atau validasi.
 
-yi: Nilai sebenarnya (ground truth) dari titik data i.
+$y_i$: Nilai sebenarnya (ground truth) dari titik data i.
 
-y^i : Nilai prediksi dari model untuk titik data i.
+$\hat{y}_i$ : Nilai prediksi dari model untuk titik data i.
 
 **MAE** merupakan nilai positif, dan semakin kecil nilai MAE, semakin baik performa model dalam memprediksi nilai sebenarnya. MAE juga memiliki interpretasi yang intuitif, yaitu rata-rata kesalahan prediksi secara absolut dalam satuan aslinya.
 
@@ -246,22 +246,28 @@ y^i : Nilai prediksi dari model untuk titik data i.
 MSE = $\frac{1}{n} \Sigma_{i=1}^n({y_i}-\hat{y}_i)^2$
 
 
-n: Jumlah total titik data dalam data uji atau validasi.
+${n}$: Jumlah total titik data dalam data uji atau validasi.
 
-yi : Nilai sebenarnya (ground truth) dari titik data i.
+$y_i$ : Nilai sebenarnya (ground truth) dari titik data i.
 
-y^i : Nilai prediksi dari model untuk titik data i.
+$\hat{y}_i^2$ : Nilai prediksi dari model untuk titik data i.
 
 **MSE** menghasilkan nilai yang positif, dan semakin kecil nilai MSE, semakin baik performa model. Namun, MSE dapat menyebabkan efek outlier yang lebih signifikan daripada MAE karena penggunaan kuadrat dalam perhitungannya. Hal ini berarti bahwa kesalahan yang lebih besar akan memiliki dampak yang lebih besar pada nilai MSE.
 
 - 2. Hasil Proyek
      
-Setelah mengetahui bahwa model dengan menggunakan konvolusi bekerja lebih baik, selanjutnya adalah tahap memprediksi harga rumah di masa depan. Dalam proyek ini, model dites untuk memprediksi harga rumah untuk 48 minggu kedepan. Hasilnya adalah pada dua bulan pertama hasil prediksi masih tidak menunjukkan anomali, tetapi untuk prediksi minggu-minggu selanjutnya prediksi terus menerus naik dengan besar kenaikan yang sama. Hasil ini tidak wajar dan tidak dapat digunakan sebagai prediksi harga pada masa depan yang masih sangat jauh.
+Setelah mengetahui bahwa model dengan menggunakan konvolusi bekerja lebih baik, selanjutnya adalah tahap memprediksi harga rumah di masa depan. Dalam proyek ini, model dites untuk memprediksi harga rumah untuk 48 minggu kedepan. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/51b6e6b7-f63a-4fa2-8d3a-725c866996a8)
+Hasilnya adalah pada dua bulan pertama hasil prediksi masih tidak menunjukkan anomali, tetapi untuk prediksi minggu-minggu selanjutnya prediksi terus menerus naik dengan besar kenaikan yang sama. Hasil ini merupakan indikasi terjadinya ketidakwajaran  dan tidak dapat digunakan sebagai prediksi harga pada masa depan yang masih sangat jauh. Saat memprediksi harga rumah di masa depan yang masih dekat, model masih dapat menangkap pola-pola yang ada dalam data hitoris awal dengan baik. Ini membuat model dapat bekerja dengan baik karena perubahan harga mungkin lebih stabil dam masih dapat dijelaskan oleh tren harga pada masa lampau yang masih dekat.
+
+Untuk perihal tentang prediksi terus menerus naik secara progressif, hal ini menjadi tidak wajar mengingat dalam pasar aset rumah dan bangunan harga tidak mungkin terus menerus naik dengan jumlah nilai kenaikan yang sama dalam kurun waktu tertentu, perubahan harga tidak selalu terjadi dalam pola linier yang terus menerus naik. Model yang hanya memperpanjang pola linier ini mungkin mengabaikan faktor-faktor kompleks yang mempengaruhi perubahan harga sebenarnya. Prediksi jauh di masa depan lebih sulit karena banyak faktor dan peristiwa yang tidak terduga dapat mempengaruhi pasar. Model mungkin menghadapi kesulitan dalam mengenali pola jangka panjang yang sebenarnya menggerakkan harga. Model mungkin hanya dapat menangkap pola jangka pendek atau menengah yang lebih mudah dikenali.
+
+Apabila model hanya mengandalkan pola yang terlihat dimasa lalu, model tersebut mungkin tidak sensitif terhadap perubahan fundamental yang terjadi di masa depan. Projek ini memanfaatkan hasil prediksi sebelumnya sebagai data latihan untuk prediksi selanjutnya pada rentang waktu di masa depan. Prediksi yang terdapat pada prediksi sebelumnya pasti memiliki nilai residual yang mana jika hasil prediksi masa lalu yang memiliki nilai error digunakan kembali untuk melakukan prediksi ke masa depan yang lebih jauh, maka akan terjadi *cummulative error* model mulai belajar dari kesalahan yang terakumulasi, sehingga prediksi menjadi semakin tidak akurat seiring waktu. 
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/51b6e6b7-f63a-4fa2-8d3a-725c866996a8) Gambar 9. Prediksi harga rumah untuk 48 minggu ke depan
 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2) Gambar 9. Prediksi harga rumah untuk 48 minggu ke depan
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2) Gambar 10. Grafik prediksi harga rumah untuk 48 minggu ke depan
 
 Kesimpulannya adalah untuk memprediksi harga rumah yang jauh di masa depan, model akan bingung dan tidak dapat menentukan harga yang normal sehingga prediksi harga seakan-akan hanya tebakan saja. Sama seperti kita ingin memprediksi apakah bulan depan akan terjadi hujan atau tidak, pasti akan lebih sulit menebak terjadinya hujan satu bulan kedepan dibandingkan satu jam kedepan. 
 
@@ -269,4 +275,17 @@ Solusinya adalah setiap kali satu prediksi harga rumah dibuat oleh model dan dat
 
 
 _Catatan:_
-- Untuk pelatihan model berulang dengan menggunakan satu data baru yang dihasilkan setiap kali model memprediksi belum dilakukan karena tahapannya juga sangat repetitif.  
+- Untuk pelatihan model berulang dengan menggunakan satu data baru yang dihasilkan setiap kali model memprediksi belum dilakukan karena tahapannya juga sangat repetitif.
+
+
+_Referensi:_
+
+- Oizumi, Eiji. "Property finance in Japan: expansion and collapse of the bubble economy." Environment and Planning A 26.2 (1994): 199-213.
+- Yu, Li, Chenlu Jiao, Hongrun Xin, Yan Wang, and Kaiyang Wang. "Prediction on housing price based on deep learning." International Journal of Computer and Information Engineering 12, no. 2 (2018): 90-99.
+- Xu, Hangtian. "Land-use conversion and residential recentralization: Evidence from Japan's real estate bubble in the 1980s." (2020).
+- Xu, Xiaojie, and Yun Zhang. "House price forecasting with neural networks." Intelligent Systems with Applications 12 (2021): 200052.
+- Clapp, John, and Carmelo Giaccotto. "Evaluating house price forecasts." Journal of Real Estate Research 24.1 (2002): 1-26.
+- Henrique, Bruno Miranda, Vinicius Amorim Sobreiro, and Herbert Kimura. "Literature review: Machine learning techniques applied to financial market prediction." Expert Systems with Applications 124 (2019): 226-251.
+- Han, Zhongyang, et al. "A review of deep learning models for time series prediction." IEEE Sensors Journal 21.6 (2019): 7833-7848.
+- Hua, Yuxiu, et al. "Deep learning with long short-term memory for time series prediction." IEEE Communications Magazine 57.6 (2019): 114-119.
+  
