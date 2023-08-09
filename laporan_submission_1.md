@@ -8,12 +8,7 @@ Projek ini bertujuan untuk membangun model *machine learning* yang dapat mempred
 
 *Bubble economy* adalah kenaikan harga asset yang dampaknya cukup luas untuk suatu perekonomian negara. Karena kasus di Jepang pada tahun 1984 properti adalah aset yang banyak dimiliki banyak orang maka jika harga nya naik drastis dan selanjutnya turun drastis dapat memengaruhi ekonomi sosial negara. *Buble economy* yang membuat harga aset meningkat bukan didasarkan pada nilai intrinsiknya, melainkan pada spekulasi masyarakat yang ingin berinvestasi. 
 
-Saat gelembung tumbuh harga-harga aset sudah pasti naik drastis sehingga lebih banyak investor tertarik ke pasar, yang menyebabkan kenaikan harga lebih lanjut dan menyebabkan keuntungan bagi investor. Tetapi untuk masyarakat yang benar-benar membutuhkan rumah untuk kebutuhan bukan untuk investasi akan merasa sangat keberatan karena harga-harga rumah sudah sangat tinggi. Maka dari itu akan terjadi penurunan anjlok harga aset untuk membuat harga rumah normal kembali yang disebabkan oleh peraturan pemerintah, sehingga menghasilkan kerugian pada sisi investor karena harga jual yang turun sangat jauh dibawah saat mereka membeli harga aset tersebut saat sebelum anjlok, ditambah banyak investor yang berinvestasi dengan menggunakan dana pinjaman dari bank dan karena harga aset yang dibeli turun drastis maka mereka tidak dapat melunasi pinjamannya menyebabkan banyak bank yang mengalami kebangkrutan sehingga menyebabkakn penurunan pertumbuhan ekonomi yang signifikan.
-
-[Land-use conversion and residential recentralization: Evidence from Japan's real estate bubble in the 1980s](https://mpra.ub.uni-muenchen.de/id/eprint/105961) 
-
-[Where and when was the 1980s bubble emerged in Japan? Evidence from prefecture-level land price data](https://feb.ugm.ac.id/id/profil/staf-pengajar/2576-traheka-erdyas-bimanatya) 
-
+Saat gelembung tumbuh harga-harga aset sudah pasti naik drastis sehingga lebih banyak investor tertarik ke pasar, yang menyebabkan kenaikan harga lebih lanjut dan menyebabkan keuntungan bagi investor. Tetapi untuk masyarakat yang benar-benar membutuhkan rumah untuk kebutuhan bukan untuk investasi akan merasa sangat keberatan karena harga-harga rumah sudah sangat tinggi. Maka dari itu akan terjadi penurunan anjlok harga aset untuk membuat harga rumah normal kembali yang disebabkan oleh peraturan pemerintah, sehingga menghasilkan kerugian pada sisi investor karena harga jual yang turun sangat jauh dibawah saat mereka membeli harga aset tersebut saat sebelum anjlok, ditambah banyak investor yang berinvestasi dengan menggunakan dana pinjaman dari bank dan karena harga aset yang dibeli turun drastis maka mereka tidak dapat melunasi pinjamannya menyebabkan banyak bank yang mengalami kebangkrutan sehingga berimplikasi pada penurunan pertumbuhan ekonomi yang signifikan.
 
 
 ## Business Understanding
@@ -35,7 +30,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 - Untuk memprediksi data baru yang diluar dari dataset awal, konsep yang akan digunakan adalah dengan memanfaatkan data histori harga rumah dimasa lalu dalam kurun waktu tertentu untuk memprediksi harga rumah di minggu-minggu berikutnya. Selanjutnya hasil prediksi masa depan yang didapat di iterasi sebelumnya akan dimasukkan ke dalam pola data histori untuk menebak harga rumah pada minggu-minggu berikutnya.
 
 ## Data Understanding
-Dataset yang Saya gunakan pada projek ini berisi informasi historis tentang harga rumah, termasuk fitur-fitur seperti kode pos, jumlah kamar tidur, harga, tahun dijual dan tipe properti. Data ini akan digunakan untuk melatih model machine learning untuk memprediksi harga rumah di masa depan dan menganalisis perubahan tren harga untuk mengidentifikasi potensi lonjakan harga.
+Dataset yang penulis gunakan pada projek ini berisi informasi historis tentang harga rumah, termasuk fitur-fitur seperti kode pos, jumlah kamar tidur, harga, tahun dijual dan tipe properti. Data ini akan digunakan untuk melatih model machine learning untuk memprediksi harga rumah di masa depan dan menganalisis perubahan tren harga untuk mengidentifikasi potensi lonjakan harga.
 
 House Property Sales Time Series (https://www.kaggle.com/datasets/htagholdings/property-sales?select=raw_sales.csv).
 
@@ -142,31 +137,22 @@ house_price_df
 
 Setelah membuat data menjadi regular, jumlah data akan berkurang dari sebelumnya dan masing-masing satu data merepresentasikan harga pada tiap-tiap minggunya.
 
-- 2. Memotong-motong data timeseries menjadi ke bentuk window sebagai independent variable dan horizon sebagai dependent variable
+- 2. Memotong-motong data timeseries menjadi ke bentuk *window* sebagai independent variable dan *horizon* sebagai dependent variable
  
-Untuk dapat membuat data timeseries dapat dimasukkan ke dalam machine learning supervised learning, diperlikan metode windowing. window dari jangka waktu dimasa lalu digunakan untuk menebak masa depan (horizon).
+Untuk dapat membuat data timeseries dapat dimasukkan ke dalam machine learning supervised learning, diperlikan metode windowing. *window* dari jangka waktu dimasa lalu digunakan untuk menebak masa depan (*horizon*).
 
-Pada program telah didefinisikan nilai untuk menentukan interval window dan horizon atau seberapa jauh prediksi ke masa depan. 
+Pada program telah didefinisikan nilai untuk menentukan interval *window* dan *horizon* atau seberapa jauh prediksi ke masa depan. 
 
 ```
 HORIZON = 1 # menebak price rata-rata pada 1 minggu kedepannya
 WINDOW_SIZE = 8 #menebak price 2 bulan sebelumnya
 ```
 
-Untuk feature berisi oleh window harga pada beberapa waktu kebelakang sesuai dengan nilai WINDOW_SIZE yang didefinisikan ditambah dengan jumlah bedrooms karena ini merupakan multivariate time series. Lalu, untuk label diisi oleh keterangan price untuk beberapa waktu kedepan sesuai dengan nilai HORIZON yang didefinisikan sebelumnya.
+Untuk feature berisi oleh *window* harga pada beberapa waktu kebelakang sesuai dengan nilai WINDOW_SIZE yang didefinisikan ditambah dengan jumlah bedrooms karena ini merupakan multivariate time series. Lalu, untuk label diisi oleh keterangan price untuk beberapa waktu kedepan sesuai dengan nilai HORIZON yang didefinisikan sebelumnya.
 
 Untuk melakukan tersebut di dalam Python kode berikut ini berperan dalam membuat *dataset* menjadi format *window* dan *horizon*. *Window* berisi dengan sejumlah data yang telah terdefinisi serta berurutan. Kemudian, *horizon* adalah rangkaian data terurut yang ada setelah *window*
 
-```
-for i in range(WINDOW_SIZE): # Shift values for each step in WINDOW_SIZE
-  house_prices_windowed[f"Price+{i+1}"] = house_prices_windowed["price"].shift(periods=i+1)
-house_prices_windowed.head(10)
-```
-
-Pertama, kita menentukan iterasi sebanyak dengan ukuran dari WINDOW_SIZE yang sudah ditentukan. Kemudian pada bagian ```house_prices_windowed[f"Price+{i+1}"]``` akan membuat kolom-kolom baru di *dataframe* ```house_price_windowed```. Kolom-kolom tersebut akan menjadi Price+1, Price+2, dan seterusnya sampai Price+WINDOW_SIZE. Selanjutnya, pada bagian ```house_prices_windowed["price"].shift(periods=i+1)``` melakukan operasi untuk menggeser window sebanyak satu data, dapat dilihat dari parameter ```periods``` yang diisi dengan nilai i+1. *Methods* ```shift```digunakan untuk menggeser nilai-nilai yang ada di kolom ke arah data-data selanjutnya sebanyak satu langkah dalam kasus ini. 
-
-
-Setelah melakukan semua hal tersebut, hasil lima window pertama tertera pada tabel 4.
+Pertama, kita menentukan iterasi sebanyak dengan ukuran dari WINDOW_SIZE yang sudah ditentukan. Kemudian pada bagian ```house_prices_windowed[f"Price+{i+1}"]``` akan membuat kolom-kolom baru di *dataframe* ```house_price_windowed```. Kolom-kolom tersebut akan menjadi Price+1, Price+2, dan seterusnya sampai Price+WINDOW_SIZE. Selanjutnya, pada bagian ```house_prices_windowed["price"].shift(periods=i+1)``` melakukan operasi untuk menggeser *window* sebanyak satu data, dapat dilihat dari parameter ```periods``` yang diisi dengan nilai i+1. *Methods* ```shift```digunakan untuk menggeser nilai-nilai yang ada di kolom ke arah data-data selanjutnya sebanyak satu langkah dalam kasus ini. Setelah melakukan semua hal tersebut, hasil lima *window* pertama tertera pada tabel 4.
 
 Tabel 4. Hasil pemetaan dataset menjadi lima *WINDOW* pertama untuk digunakan pada tahap *modelling*.
 
@@ -178,7 +164,7 @@ Tabel 4. Hasil pemetaan dataset menjadi lima *WINDOW* pertama untuk digunakan pa
 | 2007-07-22 | 3.142857 | 603750.000  | 5.330e+05  | 5.203e+05   | 3.395e+05   | 1530000.0 | 399000.0  | 465000.0 | 310000.0 |
 | 2007-08-05 | 3.333333 | 687714.313  | 6.037e+05  | 5.330e+05   | 5.203e+05   | 339500.0  | 1530000.0 | 399000.0 | 465000.0 |
 
-Dan hasil dari Horizon untuk lima horizon pertama yang bernilai satu tampak pada tabel 5.
+Dan hasil dari Horizon untuk lima *horizon* pertama yang bernilai satu tampak pada tabel 5.
 
 Tabel 5. Hasil pemetaan dataset menjadi lima *HORIZON* pertama untuk digunakan pada tahap *modelling*.
 
@@ -192,7 +178,7 @@ Tabel 5. Hasil pemetaan dataset menjadi lima *HORIZON* pertama untuk digunakan p
 
 ## Modeling
 
-Metode yang Saya pilih untuk menentukan metode machine learning terbaik untuk kasus menebak prediksi harga rumah dimasa depan yang melampaui data yang ada pada datasets awal adalah dengan membandingkan dua model machine learning yaitu CNN dan RNN. Arsitektur dari kedua model tersebut dibuat menjadi indentik. Dua model tersebut sama-sama memiliki tiga hidden layer, dimana layer pertama memiliki 64 neuron unit, layer kedua memiliki 128 neuron unit, layer ketiga memiliki 256 neuron unit, input layer sebesar dengan nilai window yang didefinisikan dan output layer berupa fully connected layer yang berdimensi sebesar nilai HORIZON yang didefinisikan sebelumnya. Dua hal yang membedakan kedua model tersebut adalah untuk model yang menggunakan CNN pada hiden layer digunakan Convolution layer untuk dimaensi satu yaitu Conv1D, sedangkan pada model RNN pada hidden layer memanfaatkan LSTM. Selanjutnya karna model konvolusi membutuhkan kernel size sedangkan model RNN tidak, maka hanya model konvolusi yang memiliki parameter kernel_size yang nilainya 5.
+Metode yang penulis pilih untuk menentukan metode machine learning terbaik untuk kasus menebak prediksi harga rumah dimasa depan yang melampaui data yang ada pada datasets awal adalah dengan membandingkan dua model machine learning yaitu CNN dan RNN. Arsitektur dari kedua model tersebut dibuat menjadi indentik. Dua model tersebut sama-sama memiliki tiga hidden layer, dimana layer pertama memiliki 64 neuron unit, layer kedua memiliki 128 neuron unit, layer ketiga memiliki 256 neuron unit, input layer sebesar dengan nilai *window* yang didefinisikan dan output layer berupa fully connected layer yang berdimensi sebesar nilai HORIZON yang didefinisikan sebelumnya. Dua hal yang membedakan kedua model tersebut adalah untuk model yang menggunakan CNN pada hiden layer digunakan Convolution layer untuk dimaensi satu yaitu Conv1D, sedangkan pada model RNN pada hidden layer memanfaatkan LSTM. Selanjutnya karna model konvolusi membutuhkan kernel size sedangkan model RNN tidak, maka hanya model konvolusi yang memiliki parameter kernel_size yang nilainya 5.
 
 Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi yang menggunakan Conv1D berhasil memprediksi harga rumah yang mendekati ke harga aslinya lebih baik dari pada model Recurrent Neural Network yang menggunakan LSTM.
 
@@ -200,22 +186,16 @@ Karena *metrics* yang digunakan untuk mengukur performa model masalah time serie
 
 Gambar 7 dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang menggunakan layer *convolutional* atau *Conv1D layer*. Pada grafik terlihat nilai *loss* dan *validation loss* mampu konvergen lebih cepat daripada model yang menggunakan layer RNN, dapat dilihat pada tahap awal *epochs* sekitar epoch ke-15 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau sudah konvergen. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c) Gambar 7. Visualisasi hasil training model konvolusi yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing masing *epoch*
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c) Gambar 7. Visualisasi hasil training model konvolusi yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing-masing *epoch*
 
 Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang dilatih dengan menggunakan layer jenis RNN yaitu LSTM. Pada grafik terlihat nilai *loss* dan *validation loss* konvergen lebih lambat daripada model yang menggunakan layer konvolusi, dapat dilihat baru pada sekitar *epoch* ke-46 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau konvergen. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20) Gambar 8. Visualisasi hasil training model RNN yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing masing *epoch*
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20) Gambar 8. Visualisasi hasil training model RNN yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing-masing *epoch*
 
 Dari kedua grafik diatas dapat ditarik kesimpulan bahwa model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan kita akan menggunakan model konvolusi. Jika melihat dari grafik saja kurang dapat dilihat mana yang nilai MAE-nya lebih kecil karena selisih yang mendekati, maka dari itu kita akan menarik prediksi nilai MAE dan MSE dari pengujian dan validasi terhadap data validasi. Didapatkan bahwa sesuai dengan performa kecepatan konvergen pada kedua model, model yang lebih cepat konvergen memiliki performa yang lebih baik.  
 
 ```
-model_conv_results = evaluate_preds(y_true = tf.squeeze(test_labels),
-                                    y_pred = model_conv_prediksi)
-
 model_conv_results = {'mae': 39565.105, 'mse': 3369372200.0}
-
-model_rnn_results = evaluate_preds(y_true = tf.squeeze(test_labels),
-                                    y_pred = model_rnn_prediksi)
 
 model_rnn_results = {'mae': 46709.727, 'mse': 4563947500.0}
 ```
@@ -264,10 +244,9 @@ Untuk perihal tentang prediksi terus menerus naik secara progressif, hal ini men
 
 Apabila model hanya mengandalkan pola yang terlihat dimasa lalu, model tersebut mungkin tidak sensitif terhadap perubahan fundamental yang terjadi di masa depan. Projek ini memanfaatkan hasil prediksi sebelumnya sebagai data latihan untuk prediksi selanjutnya pada rentang waktu di masa depan. Prediksi yang terdapat pada prediksi sebelumnya pasti memiliki nilai residual yang mana jika hasil prediksi masa lalu yang memiliki nilai error digunakan kembali untuk melakukan prediksi ke masa depan yang lebih jauh, maka akan terjadi *cummulative error* model mulai belajar dari kesalahan yang terakumulasi, sehingga prediksi menjadi semakin tidak akurat seiring waktu. 
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/51b6e6b7-f63a-4fa2-8d3a-725c866996a8) Gambar 9. Prediksi harga rumah untuk 48 minggu ke depan
 
-
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2) Gambar 10. Grafik prediksi harga rumah untuk 48 minggu ke depan
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/ae6a4061-9409-457b-af98-5b157c438ca2) 
+Gambar 9. Grafik prediksi harga rumah untuk 48 minggu ke depan
 
 Kesimpulannya adalah untuk memprediksi harga rumah yang jauh di masa depan, model akan bingung dan tidak dapat menentukan harga yang normal sehingga prediksi harga seakan-akan hanya tebakan saja. Sama seperti kita ingin memprediksi apakah bulan depan akan terjadi hujan atau tidak, pasti akan lebih sulit menebak terjadinya hujan satu bulan kedepan dibandingkan satu jam kedepan. 
 
@@ -280,12 +259,19 @@ _Catatan:_
 
 _Referensi:_
 
-- Oizumi, Eiji. "Property finance in Japan: expansion and collapse of the bubble economy." Environment and Planning A 26.2 (1994): 199-213.
-- Yu, Li, Chenlu Jiao, Hongrun Xin, Yan Wang, and Kaiyang Wang. "Prediction on housing price based on deep learning." International Journal of Computer and Information Engineering 12, no. 2 (2018): 90-99.
-- Xu, Hangtian. "Land-use conversion and residential recentralization: Evidence from Japan's real estate bubble in the 1980s." (2020).
-- Xu, Xiaojie, and Yun Zhang. "House price forecasting with neural networks." Intelligent Systems with Applications 12 (2021): 200052.
-- Clapp, John, and Carmelo Giaccotto. "Evaluating house price forecasts." Journal of Real Estate Research 24.1 (2002): 1-26.
-- Henrique, Bruno Miranda, Vinicius Amorim Sobreiro, and Herbert Kimura. "Literature review: Machine learning techniques applied to financial market prediction." Expert Systems with Applications 124 (2019): 226-251.
-- Han, Zhongyang, et al. "A review of deep learning models for time series prediction." IEEE Sensors Journal 21.6 (2019): 7833-7848.
-- Hua, Yuxiu, et al. "Deep learning with long short-term memory for time series prediction." IEEE Communications Magazine 57.6 (2019): 114-119.
+- [Land-use conversion and residential recentralization: Evidence from Japan's real estate bubble in the 1980s](https://mpra.ub.uni-muenchen.de/id/eprint/105961) 
+
+- [Where and when was the 1980s bubble emerged in Japan? Evidence from prefecture-level land price data](https://feb.ugm.ac.id/id/profil/staf-pengajar/2576-traheka-erdyas-bimanatya) 
+
+- [Oizumi, Eiji. "Property finance in Japan: expansion and collapse of the bubble economy." Environment and Planning A 26.2 (1994): 199-213.](https://journals.sagepub.com/doi/pdf/10.1068/a260199)
+  
+- [Yu, Li, Chenlu Jiao, Hongrun Xin, Yan Wang, and Kaiyang Wang. "Prediction on housing price based on deep learning." International Journal of Computer and Information Engineering 12, no. 2 (2018): 90-99.](https://publications.waset.org/10008599/prediction-on-housing-price-based-on-deep-learning)
+  
+- [Xu, Hangtian. "Land-use conversion and residential recentralization: Evidence from Japan's real estate bubble in the 1980s." (2020).](https://mpra.ub.uni-muenchen.de/105961/1/MPRA_paper_105961.pdf)
+  
+- [Xu, Xiaojie, and Yun Zhang. "House price forecasting with neural networks." Intelligent Systems with Applications 12 (2021): 200052.](https://www.sciencedirect.com/science/article/pii/S2667305321000417/pdfft?md5=aad456a2f3d0fe5ff87e775ba5a6c666&pid=1-s2.0-S2667305321000417-main.pdf)
+  
+- [Clapp, John, and Carmelo Giaccotto. "Evaluating house price forecasts." Journal of Real Estate Research 24.1 (2002): 1-26.](https://core.ac.uk/download/pdf/7162682.pdf)  
+
+- [Hua, Yuxiu, et al. "Deep learning with long short-term memory for time series prediction." IEEE Communications Magazine 57.6 (2019): 114-119.](https://arxiv.org/pdf/1810.10161)
   
