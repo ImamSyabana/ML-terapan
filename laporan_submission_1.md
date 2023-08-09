@@ -127,13 +127,6 @@ Algoritma yang digunakan untuk melakukan hal tersebut adalah dengan memanfaatkan
 
 Metode ini bekerja dengan cara menyamakan frequensi yang ada pada dataset dengan cara membuat interval indeks yang berupa *timestamps* atau *dates* memiliki jarak yang sama. *Method* ini menerima satu argumen bertipe *string* yang merepresentasikan periode waktu seperti dalam projek kali ini 'W' merepresentasikan minggu, ada pula 'D' yang merepresentasikan hari, dan 'M' yang merepresentasikan bulan. Kemudian,  ```resample()``` juga dapat di tambah dengan fungsi lain untuk dapat meringkas data ke frequensi yang diinginkan. Beberapa fungsi agregasi yang sering dipakai adalah ```mean()```, ```sum()```, ```max()```, ```min()```, ```count()```, dan lain-lain. Fungsi-fungsi ini disambung dengan *method* ```resample()```. Dengan menggunakan fungsi-fungsi tersebut kita dapat membuat data *timeseries* yang iregular menjadi regular dengan meringkas data-data yang ada pada interval tertentu dengan mengambil rerata, jumlah, nilai maksimum atau minimum, dan sebagainya.
 
-```
-import pandas as pd
-house_price_df = house_price_df.resample('w').mean()
-house_price_df.head(20)
-
-house_price_df
-```
 
 Setelah membuat data menjadi regular, jumlah data akan berkurang dari sebelumnya dan masing-masing satu data merepresentasikan harga pada tiap-tiap minggunya.
 
