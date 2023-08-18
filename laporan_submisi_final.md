@@ -11,20 +11,8 @@ Gambar 1. Hasil pencarian jurnal ilmiah dengan menggunakan Google Scholar
 
 Mesin pencari jurnal seperti Google Scholar sudah termasuk ke dalam sistem temu kembali informasi yang modern. Google Scholar akan otomatis mencari dokumen yang tersebar di internet, lalu berdasarkan relevansi yang dihitung oleh model yang dibuat Google dokumen tersebut akan masuk ke daftar hasil pencarian dokumen Google Scholar. Hasil dokumen yang ditampilkan ke pengguna untuk rekomendasi dokumen yang dianggap sesuai dengan keinginan pengguna sudah diprogram dengan menggunakan model *machine learning* sehingga dokumen yang paling relevan pada kueri akan ditampilkan dari yang paling relevan hingga ke yang paling tidak relevan. Pada bagian dimana Google Scholar menampilkan dokumen-dokumen yang relevan dengan kueri pengguna, hal tersebut merupakan pengimplementasian dari sistem rekomendasi. Rekomendasi Google Scholar dibuat berdasarkan kueri yang diinputkan pengguna, lalu dari kueri tersebut sistem dapat membuat rekomendasi dokumen-dokumen kepada pengguna berdasakran tinggat relevansinya terhadap kueri. Dalam kasus ini sistem rekomendasi yang diimplementasikan adalah berjenis *content based filtering*, karena hasil rekomendasi bergantung pada judul yang ada pada dokumen. Karena judul merupakan atribut atau salah satu konten dari dokumen tersebut, dapat dikatakan bahwa implementasi pada Google Scholar adalah sistem rekomendasi berbasis konten.  
 
+Algoritma pencarian dokumen yang relevan milik Google yang diterapkan di dalam Google Scholar atau produk lain dari Google seperti Google *search engine* merupakan algoritma yang kompleks dan juga sudah paten milik Google yang dibangun dari kombinasi beberapa teknik, input, dan model pembelajaran mesin untuk menentukan relevansi dan kualitas dari dokumen untuk di rekomendasikan berdasarkan kueri yang diinputkan pengguna. Google tentu saja tidak secara publik membeberkan detail menyeluruh tentang bagaimana cara algoritma milik Google tersebut. Karena alasan tersebut penulis merasa projek untuk membuat sistem rekomendasi untuk pencarian jurnal ilmiah masih perlu dikerjakan. Projek sistem temu kembali informasi ini akan dibuat untuk berusaha menirukan algoritma sistem temu kembali informasi Google dengan memperhatikan *Relevance Factor* yang ditentukan dengan menggunakan algoritma *Cossine Simmilarity* untuk mengetahui nilai relevansi untuk masing-masing dokumen yang direkomendasikan.
 
-
-
-
-
-
-
-Pada bagian ini, Kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Jelaskan mengapa proyek ini penting untuk diselesaikan.
-- Menyertakan hasil riset terkait atau referensi. Referensi yang diberikan harus berasal dari sumber yang kredibel dan author yang jelas.
-  
-  Format Referensi: [Judul Referensi](https://scholar.google.com/) 
 
 ## Business Understanding
 
