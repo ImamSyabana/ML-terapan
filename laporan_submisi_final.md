@@ -16,9 +16,23 @@ Algoritma pencarian dokumen yang relevan milik Google yang diterapkan di dalam G
 
 ## Business Understanding
 
-Pada bagian ini, Anda perlu menjelaskan proses klarifikasi masalah.
+Permasalahan yang diangkat pada projek kali ini dan mendasari untuk dikembangkannya projek ini adalah berasal dari pengalaman yang dialami oleh penulis saat ingin mencari dokumen jurnal ilmiah disitus perpustakaan digital milik universitas tempat penulis kuliah. Seperti yang telah dijelaskan sebelumnya pada bagian domain proyek, telah diketahui bahwa Google menerapkan algoritma yang kompleks, memadukan teknik-teknik *machine learning* yang membuat hasil rekomendasi dokumen relevan yang ditunjukkan pada pengguna sesuai dengan apa yang pengguna inginkan dan yang paling penting tidak ada dokumen relevan yang tidak terpilih untuk direkomendasikan ke pengguna. Algoritma kompleks yang diterapkan Google dalam *information retrieval* merupakan implementasi dari penerapan ide *flexible search*, yaitu kemampuan sistem pencari dokumen dalam memahami berbagai tipe queri, maksud pengguna, dan informasi yang dibutuhkan. *Flexible search* tetap dapat memberikan hasil dokumen yang relevan walaupun queri yang diinputkan pengguna tidak tepat, tidak jelas, terdapat salah pengejaan, dan yang paling penting masih dapat memberikan rekomendasi yang relevant walaupun queri tidak seratus persen sama dengan dokumen yang ada di database. Contoh penerapan *flexible search* pada Google Schoolar tertera pada Gambar 2.
 
-Bagian laporan ini mencakup:
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/e6667537-0c30-44c1-8397-2539b506b439)
+Gambar 2. Hasil pencarian Google Scholar yang masih dapat memberi hasil dokumen relevan saat queri yang diinputkan pengguna terdapat kesalahan pengejaan.
+
+Berlawanan dengan apa yang diimplementasikan oleh Google, pada [*website* perpusatakaan digital milik UIN Sunan Kalijaga Yogyakarta](https://digilib.uin-suka.ac.id/) masih menerapkan algoritma konvensional untuk melakukan *information retrieval* pada dokumen jurnal-jurnal ilmiahnya. Logika konvensional yang diterapkan pada *website* perpusatakaan digital tersebut merupakan algoritma *boolean search*. *Boolean search* adalah metode yang dapat digunakan untuk melakukan *information retrieval* dari kumpulan dokumen, metode ini berdasar kepada kombinasi antara logika boolean dan teori himpunan. Metode *boolean search* akan mencocokan kesamaan yang terdapat pada kata-kata yang ada di dalam queri yang dimasukkan oleh pengguna sebagai kumpulan kata kunci dengan judul dari dokumen-dokumen yang terdapat didalam kumpulan jurnal tempat perpustakaan menyimpan dokumen-dokumennya. Dokumen jurnal yang akan ditampilkan ke pengguna adalah dokumen yang memiliki judul yang berisi dengan kata kunci yang berada pada queri.
+
+Penulis juga tidak memiliki akses terhadap algoritma yang diterapkan pada perpustakaan digital milik universitas tempat penulis kuliah, tetapi berdasarkan gambar 3 dan gambar 4 penulis dapat memastikan bahwa algoritma yang diterapkan berbeda dengan algoritma *machine learning* modern yang diterapkan Google. Pada gambar 3 perpustakaan digital berhasil menampilkan dokumen-dokumen yang berhubungan dengan queri "SISTEM TEMU KEMBALI INFORMASI", tetapi pada gambar 4 dimana perpustakaan digital diuji dengan menggunakan queri "SISTEM TEMU KEMBALI INFORMASII" yang dimana terdapat kesalahan dalam penulisan, sistem perpustakaan tidak mampu mengetahui maksud pengguna sebenarnya saat diberi queri yang memiliki kesalahan ketik. Ini merupakan indikasi bahwa sistem perpustakaan digital tersebut menerapkan model *information retrieval* metode konvensional *boolean search* karena sama sekali tidak merekomendasikan satu dokumen yang relevan seperti yang direkomendasikan pada gambar 3. 
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/93dcfd73-91da-47b9-99db-2ef3acf52ff6)
+Gambar 3. Sistem perpustakaan digital merekomendasikan sejumlah dokumen berdasarkan queri normal dari pengguna
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/3ceb0e49-cdad-46c9-abbc-c124c89db8c0)
+Gambar 4. Sistem perpustakaan digital gagal menemukan dokumen untuk queri abnormal dari pengguna
+
+Permasalahan yang telah dipaparkan tersebut akan membatasi dan merupakan sebuah rintangan yang perlu diselesaikan dalam bidang *information retrieval* di zaman modern ini. Dengan berusaha menerapkan model yang menerapkan *flexible search*, walaupun mungkin hasilnya masih tidak sebaik algoritma yang dimiliki Google, algoritma *flexible search* ini masih lebih baik dari *boolean search* karena tetap mampu memberikan beberapa rekomendasi dokumen dengan memberikan nilai relevansi dengan queri yang dimiliki pengguna sebagai pertimbangan pengguna apakah akan menerima dokumen rekomendasi dari sistem atau tidak.  
+
 
 ### Problem Statements
 
@@ -88,4 +102,5 @@ _Catatan:_
 _Referensi:_
 
 - [Arguello, Jaime (2013). INLS 509 : Introduction to Information Retrieval.](https://ils.unc.edu/courses/2021_fall/inls509_001/) 
-
+- [Beel, Joeran; Gipp, Bela; Lange, Stefan; Breitinger, Corinna (2015-07-26). "Research-paper recommender systems: a literature survey".](https://kops.uni-konstanz.de/entities/publication/861ddd16-fbc6-4ee4-a77f-6bba081041f3)
+- Lancaster, F.W.; Fayen, E.G. (1973), Information Retrieval On-Line, Melville Publishing Co., Los Angeles, California
