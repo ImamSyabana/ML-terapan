@@ -36,25 +36,15 @@ Permasalahan yang telah dipaparkan tersebut akan membatasi dan merupakan sebuah 
 
 ### Problem Statements
 
-Menjelaskan pernyataan masalah:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Bagaimana mengembangkan sistem temu kembali informasi dan rekomendasi jurnal ilmiah untuk mengukur nilai relevansi dokumen?
+- Bagaimana mengimplementasikan algoritma Cosine Similarity dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna?
 
 ### Goals
 
-Menjelaskan tujuan proyek yang menjawab pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Mengembangkan sebuah sistem temu kembali informasi dan rekomendasi jurnal ilmiah yang menggunakan algoritma *Cosine Similarity* untuk mengukur nilai relevansi dokumen. Sistem ini akan memanfaatkan model machine learning untuk menghitung kemiripan antara queri pengguna dengan konten jurnal ilmiah. Tujuannya adalah untuk memberikan pengalaman pencarian yang lebih relevan dan akurat bagi pengguna. Langkah-langkah untuk mewujudkan hal tersebut adalah dengan mengumpulkan data jurnal ilmiah, melakukan pemrosesan teks untuk menghasilkan representasi vektor dokumen, menghitung kemiripan antara vektor query pengguna dan vektor dokumen menggunakan Cosine Similarity.
+  
+- Mengimplementasikan algoritma *Cosine Similarity* dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna. Dalam hal ini, algoritma *Cosine Similarity* akan digunakan untuk mengukur sejauh mana dokumen-dokumen dalam koleksi memiliki relevansi dengan query yang diberikan oleh pengguna. Tujuan utama adalah menyajikan rekomendasi jurnal ilmiah yang paling sesuai dengan preferensi dan kebutuhan pengguna, sehingga memudahkan proses pencarian informasi yang lebih efektif.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Approach” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution approach (algoritma atau pendekatan sistem rekomendasi).
 
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
