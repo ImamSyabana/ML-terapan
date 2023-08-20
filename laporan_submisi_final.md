@@ -47,14 +47,37 @@ Permasalahan yang telah dipaparkan tersebut akan membatasi dan merupakan sebuah 
 
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Dataset yang penulis gunakan pada projek ini berisi tentang paper penelitian di dalam domain NLP, dimana di dalam file terdapat beberapa informasi atribut yang dapat digunakan untuk melakukan *information retrieval*. *Dataset* berisi atribut mengenai judul, penulis, tautan, domain, dan subdomain paper. Untuk indeks masing-masing paper didaftarkan ke dalam atribut yang bernamaa Sno.
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+Tautan ke Research Paper dataset : https://www.kaggle.com/datasets/vijendersingh412/research-paper
+
+### Variabel-variabel pada Research Paper dataset adalah sebagai berikut:
+- Sno : merupakan tipe data integer yang menunjukkan index masing-masing paper.
+- Paper : atribut dengan tipe data string yang menunjukkan judul paper jurnal.
+- Link : atribut dengan tipe data string yang berisi tautan ke paper jurnal di internet.
+- Authors : Atribut dengan tipe data string yang mencantumkan informasi tentang penulis dari paper.
+- Domain : Ranah pembahasan paper, bertipe data string.
+- Subdomain : Bagian dari domain yang berisi tema pembahasan lebih menjurus, bertipe data string. 
+
+Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan fungsi bawaan dari python yaitu .info() penulis bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bisa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. 
+
+Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada dataset *house price*
+
+| Column | Non-Null Count | Dtype |
+|:----------------:|:---------------:|:---------------:|
+| Sno     | 82 non-null   | int64     |
+| Paper     | 82 non-null  | object     |
+| Link       | 82 non-null | object    |
+| Authors       | 82 non-null | object     |
+| Domain       | 82 non-null  | object     |
+| Subdomain       | 82 non-null  | object     |
+
+Pada tahap *data understanding* dilakukan eksplorasi data yang dilakukan untuk mengetahui jumlah data yang unik untuk masing-masing atribut. Dengan mengetahui jumlah data yang unik pada setiap atribut, dapat diketahui seberapa luas koleksi paper yang dikumpulkan pada *dataset* ini.
+
+Hasil dari eksplorasi data tersebut menunjukkan bahwa ada 82 judul paper yang unik dari keseluruhan 82 data yang ada di dataset, ini menunjukkan tidak ada judul paper yang duplikat. Selanjutnya, pada atribut Link diketahui terdapat 82 tautan unik yang mengarah ke sumber dari masing-masing paper tersebut di internet. Untuk atribut Authors diketahui bahwa terdapat 81 *authors* yang berkontribusi dalam penulisan paper yang ada di dataset ini. Apabila *authors* hanya terdapat 81, sementara jumlah paper keseluruhan ada 82, ini berarti ada satu *author* atau beberapa *authors* yang sama menulis dua judul paper yang berbeda. Untuk atribut selanjutnya adalah domain. Di dalam dataset ini, seperti yang dideskripsikan pada *webiste* kaggle, jurnal yang dikumpulkan berfokus pada paper penelitian pada bidang NLP, sehingga jumlah domain yang unik pada dataset ini hanya ada satu yaitu NLP. Terakhir, untuk atribut Subdomain, terdapat dua belas subdomain yang unik meliputi _***Machine Learning***_, _***Neural Models***_, _***Clustering & Word/Sentence Embeddings***_, _***Topic Models***_, _***Language Modeling***_, _***Segmentation, Tagging, Parsing***_, _***Sequential Labeling & Information Extraction***_, _***Machine Translation & Transliteration***_, _***Sequence-to-Sequence Models***_, _***Coreference Resolution***, ***Automatic Text Summarization***, ***Question Answering and Machine Comprehension***_, _***Generation, Reinforcement Learning***_
+
+
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
