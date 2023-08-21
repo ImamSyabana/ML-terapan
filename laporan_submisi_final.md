@@ -82,11 +82,16 @@ Tahap eksplorasi data juga dilanjutkan dengan memeriksa apakah didalam dataset t
 Eksplorasi data yang terakhir adalah mengecek apakah ada data di dalam dataset yang serupa dengan data yang lain atau disebut duplikat. Setelah mengeksplor dataset untuk menemukan data duplikat dengan menggunakan fungsi ```duplicated()``` dan menjumlahkan data duplikat tersebut dengan menggunakkan fungsi ```sum``` didapatkan jumlah data duplikat adalah nol.
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Di dalam projek ini proses *data preparation* yang dilakukan kebanyakan dilakukan di dalam hal menganalisis data dan memanipulasi data. Pertama-tama dataset di inputkan ke dalam projek dan data tersebut disajikan ke dalam bentuk *dataframe*. *Dataset* yang sudah dimasukkan ke dalam objek *dataframe* akan diakses dan datanya diambil dengan menggunakan fungsi yang ada pada python yang dirujuk dengan metode *integer-based indexing*.
+
+- 1. Memetakan semua atribut yang ada di dataset ke dalam variabelnya masing-masing
+
+Untuk sistem rekomendasi dengan menggunakan metode *content based filtering* semua atribut yang ada di dalam dataset berperan penting untuk menentukan hasil perangkingan rekomendasi. Tahapan selanjutnya dalam pembangunan sistem pada proses *modeling* juga diminta untuk memisahkan atribut tertentu saja yang diproses, sehingga tahapan memecah dataset yang sudah diinputkan menjadi bentuk *dataframe* esensial untuk dilakukan. 
+ 
+- 2. Mengubah tipe data variabel masing-masing atribut dari numpy.ndarray menjadi list
+ 
+Untuk mempersiapkan tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini, perlu dilakukan konversi tipe data untuk masing-masing variabel atribut dataset. Konversi tipe data ini diperlukan karena tahap *modeling* nantinya akan menerapkan algoritma *Cosine Simmilarity* dengan memanfaatkan *library* yang dimiliki oleh scikit-learn yaitu TfidfVectorizer dan cosine_similarity. Pada *library* tersebut menerima input parameter yang akan mengeluarkan hasil eror jika argumen yang dimasukkan memiliki tipe data numpy.ndarray. Maka dari itu penulis akan merubah tipe data masing-masing variabel atribut menjadi tipe *list*
 
 ## Modeling
 Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
