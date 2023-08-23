@@ -115,6 +115,24 @@ Tabel 2. Rekomendasi lima dokumen jurnal ilmiah paling relevan keluaran dari sis
 Tabel 2 diatas menampilkan lima dokumen jurnal ilmiah paling relevan dari keselueuhan dokumen yang ada pada dataset. Lima dokumen tersebut menurut sistem paling relevan jika input queri dari pengguna yaitu "LSTM network used in Natural Language Processing". Hasil keluaran dari sistem rekomendasi tersebut sebenarnya berjumlah lima belas dokumen jurnal relevan, jumlah tersebut karena ke-15 dokumen tersebut memiliki nilai *cosine similarity*. Tetapi, pada tabel 2 untuk mempersingkat dan efisiensi dalam visualisasi hanya ditampilkan lima dokumen jurnal ilmiah paling relevan saja.
 
 ## Evaluation
+
+Metode yang digunakan untuk mengevaluasi seberapa baik model sistem rekomendasi jurnal merekomendasikan dokumen yang relevan dengan queri yang dimasukkan pengguna adalah dengan menggunakan penentuan klasifikasi biner. Metode yang diterapkan akan menilai apakah model merekomendasikan dokumen relevan atau tidak relevan, karena opsi kemungkinan ada dua maka metode klasifikasi biner dipilih dalam projek ini. Apabila dokumen dapat menampilkan dokumen yang relevan dan oleh pengguna juga merasa dokumen yang direkomendasikan itu relevan maka model semakin bagus. Kebalikannya, apabila sistem menampilkan rekomendasi dokumen yang menurut pengguna tidak relevan dengan queri yang diinputkan, maka model akan dinilai semakin buruk.
+
+Dalam pengimplementasian klasifikasi biner diperlukan nilai  *True positives* (TP), *True negatives* (TN), *False positives* (FP), dan *False negatives* (FN). True positive (TP) adalah nilai seberapa 
+banyak model mampu memprediksi dokumen relevan dengan benar. True negative (TN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan dengan benar. False positive (FP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan pada dokumen tidak relevan. False negative (FN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan pada dokumen relevan.
+
+Untuk melakukan hal tersebut kali ini akan diterapkan beberapa metrik untuk melakukan evaluasi penentuan klasifikasi biner. Metrik tersebut adalah *precision, recall, F1-score, dan akurasi*. Metrik *accuracy* adalah nilai yang didapat dari seluruh dokumen yang sukses diprediksi secara benar baik relevan maupun tidak relevan (TP + TN), dibagi dengan seluruh dokumen yang ada (TP + FN + FP + TN). Nilai *precision* didapat dari seluruh dokumen yang direkomendasikan ke user dan user menganggap dokumen tersebut memang relevan artinya dokumen yang benar-benar relevan (TP) dibagi dengan seluruh dokumen yang menurut sistem relevan (TP + FP). *Precision* dapat mengukur berapa banyak paper yang direkomendasikan yang benar-benar relevan. Metrik *Recall* adalah nilai yang didapat dari rekomendasi dokumen yang benar-benar relevan (TP) dibagi dengan semua dokumen yang relevan, ini termasuk dokumen yang benar-benar relevan (TP) dan dokumen yang sebenarnya relevan tetapi tidak direkomendasikan oleh sistem (FP). Terakhir adalah F1-score, *F1-Score* adalah metrik yang menilai keseimbangan antara nilai *precision* dan *recall*
+
+
+
+
+
+
+
+
+
+
+
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
 Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
@@ -137,3 +155,5 @@ _Referensi:_
 - Lancaster, F.W.; Fayen, E.G. (1973), Information Retrieval On-Line, Melville Publishing Co., Los Angeles, California
 - [Rizki Tri Wahyuni, Dhidik Prastiyanto, Eko Supraptono. Penerapan Algoritma Cosine Similarity dan Pembobotan TF-IDF pada Sistem Klasifikasi Dokumen Skripsi](https://journal.unnes.ac.id/nju/index.php/jte/article/view/10955)
 - [Melita, Ria, et al. "Penerapan Metode Term Frequency Inverse Document Frequency (Tf-Idf) Dan Cosine Similarity Pada Sistem Temu Kembali Informasi Untuk Mengetahui Syarah Hadits Berbasis Web (Studi Kasus: Syarah Umdatil Ahkam)." J. Tek. Inform 11.2 (2018): 149-164.](https://pdfs.semanticscholar.org/9602/e7bae1c8b44f4b52e56fdca2b879dca6f1a2.pdf)
+- [Caelen, O. (2017). A Bayesian interpretation of the confusion matrix. Annals of Mathematics and Artificial Intelligence, 81(3–4), 429–450.](https://doi.org/10.1007/s10472-017-9564-8)
+- [Kulkarni, A., Chong, D., & Batarseh, F. A. (2020). Foundations of data imbalance and solutions for a data democracy. Data Democracy: At the Nexus of Artificial Intelligence, Software Development, and Knowledge Engineering, 83–106.](https://doi.org/10.1016/B978-0-12-818366-3.00005-8)
