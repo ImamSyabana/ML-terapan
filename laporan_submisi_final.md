@@ -99,7 +99,21 @@ Metode yang digunakan untuk tahap pembuatan model *machine learning* untuk proje
 
 Kelebihan metode *cosine similarity* yang dimanfaatkan pada projek ini diantaranya adalah kemampuan untuk mengukur kesamaan semantik diantara jurnal-jurnal. Kedua, judul yang ada pada masing-masing paper dapat digunakan untuk dirubah menjadi representasi vector numeric dengan menggunakan teknik TF-IDF yang dapat dilakukan dengan menggunakan *library* yang sama seperti cosine_similarity dimiliki juga oleh scikit-learn. Ketiga, *cosine similarity* merupakan metode yang penulis rasa paling tepat untuk diterapkan pada projek ini, mengingat projek ini mengambil pendekatan *content-based recommendation*. Judul yang ada pada paper dijadikan faktor utama untuk menghasilkan rekomendasi jurnal yang paling relevan sesuai dengan keinginan pengguna. Terakhir, hasil keluaran atau hasil rekomendasi dokumen yang dihasilkan oleh metode ini dapat direpresentasikan secara numerik dengan menggunakan nilai *similarity score*. Dokumen yang paling direkomendasikan ke pengguna akan ditampilkan paling atas oleh sistem dengan tambahan keterangan nilai *similarity score* yang dapat digunakan untuk mempertimbangkan relevansi jurnal rekomendasi dengan queri yang dimasukkan oleh pengguna. Semakin tinggi nilai *similarity score*, maka pengguna dapat semakin yakin bahwa hasil rekomoendasi jurnal yang sistem berikan valid. 
 
-Pada tahap *modeling* terdapat beebrapa alur utama untuk mendapatkan rekomendasi jurnal yang paling relevan dengan input queri pengguna. Langkah pertama, pengguna harus memasukkan input berupa judul atau topik pembahasan jurnal ilmiah yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan dokumen jurnal yang ada di *dataset*. Untuk dapat mencocokan queri pengguna dengan dokumen jurnal di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga judul dokumen yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, queri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga queri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor queri dengan masing-masing vektor dokumen. Setelah masing-masing dokumen telah memiliki nilai *cosine similarity*, dokumen yang memiliki nilai  *cosine similarity* bukan nol akan ditampilkan ke pengguna dari dokumen yang memiliki nilai  *cosine similarity* tertinggi ke yang terendah. Dokumen yang nilai  *cosine similarity*-nya sama dengan nol tidak dimunculkan ke pengguna. Jurnal penelitian yang direkomendasikan sistem akan berupa judul jurnal paling relevan diikuti dengan atribut lain dari masing-masing jurnal seperti tautan ke jurnal, penulis, domain, dan subdomain jurnal.    
+
+
+
+
+Di dalam metode *cosine similarity* terdapat beberapa langkah-langkah dalam menghasilkan nilai cosine similarity. 
+
+
+
+
+
+
+
+
+
+Pada tahap *modeling* yang terjadi di prijek ini terdapat beebrapa alur utama untuk mendapatkan rekomendasi jurnal yang paling relevan dengan input queri pengguna. Langkah pertama, pengguna harus memasukkan input berupa judul atau topik pembahasan jurnal ilmiah yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan dokumen jurnal yang ada di *dataset*. Untuk dapat mencocokan queri pengguna dengan dokumen jurnal di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga judul dokumen yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, queri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga queri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor queri dengan masing-masing vektor dokumen. Setelah masing-masing dokumen telah memiliki nilai *cosine similarity*, dokumen yang memiliki nilai  *cosine similarity* bukan nol akan ditampilkan ke pengguna dari dokumen yang memiliki nilai  *cosine similarity* tertinggi ke yang terendah. Dokumen yang nilai  *cosine similarity*-nya sama dengan nol tidak dimunculkan ke pengguna. Jurnal penelitian yang direkomendasikan sistem akan berupa judul jurnal paling relevan diikuti dengan atribut lain dari masing-masing jurnal seperti tautan ke jurnal, penulis, domain, dan subdomain jurnal.    
 
 
 Tabel 2. Rekomendasi lima dokumen jurnal ilmiah paling relevan keluaran dari sistem
@@ -118,34 +132,30 @@ Tabel 2 diatas menampilkan lima dokumen jurnal ilmiah paling relevan dari keselu
 
 Metode yang digunakan untuk mengevaluasi seberapa baik model sistem rekomendasi jurnal merekomendasikan dokumen yang relevan dengan queri yang dimasukkan pengguna adalah dengan menggunakan penentuan klasifikasi biner. Metode yang diterapkan akan menilai apakah model merekomendasikan dokumen relevan atau tidak relevan, karena opsi kemungkinan ada dua maka metode klasifikasi biner dipilih dalam projek ini. Apabila dokumen dapat menampilkan dokumen yang relevan dan oleh pengguna juga merasa dokumen yang direkomendasikan itu relevan maka model semakin bagus. Kebalikannya, apabila sistem menampilkan rekomendasi dokumen yang menurut pengguna tidak relevan dengan queri yang diinputkan, maka model akan dinilai semakin buruk.
 
-Dalam pengimplementasian klasifikasi biner diperlukan nilai  *True positives* (TP), *True negatives* (TN), *False positives* (FP), dan *False negatives* (FN). True positive (TP) adalah nilai seberapa 
-banyak model mampu memprediksi dokumen relevan dengan benar. True negative (TN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan dengan benar. False positive (FP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan pada dokumen tidak relevan. False negative (FN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan pada dokumen relevan.
+Untuk mendapatkan data guna mengevaluasi model sistem rekomendasi tersebut, penulis perlu mengecek satu per satu secara manual apakah jurnal yang direkomendasikan oleh sistem adalah benar relevan. Pada tahap evaluasi model sistem ini penulis mengevaluasi semua jurnal yang direkomendasikan oleh sistem. Apabila sistem memberi nilai kesamaan bukan nol artinya jurnal tersebut adalah relevan menurut sistem. Model yang bekerja dengan baik adalah saat dievaluasi oleh penulis, penulis juga menganggap bahwa dokumen tersebut relevan.  Apabila sistem memberikan rekomendasi jurnal yang salah, karena pada saat di evaluasi oleh penulis, penulis tidak menganggap itu relevan maka akan mengurangi penilaian evaluasi terhadap model. Terakhir model juga akan mendapatkan nilai yang rendah apabila terdapat jurnal yang menurut penulis relevan, tetapi tidak direkomendasikan atau mendapat nilai kesamaan dengan queri sama dengan nol. Proses penulis mengevaluasi hasil rekomendasi jurnal yang dikeluarkan oleh sistem terlampir di gambar 5.
+
+![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/722cf6a4-abef-4b23-ad9c-460daa1f6385)
+Gambar 5. Sistem otomasi yang dibuat penulis untuk mempercepat evaluasi hasil jurnal rekomendasi sistem
+
+Dalam pengimplementasian klasifikasi biner diperlukan nilai  *True positives* (TP), *True negatives* (TN), *False positives* (FP), dan *False negatives* (FN). True positive (TP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan dengan benar. True negative (TN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan dengan benar. False positive (FP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan pada dokumen tidak relevan. False negative (FN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan pada dokumen relevan.
 
 Untuk melakukan hal tersebut kali ini akan diterapkan beberapa metrik untuk melakukan evaluasi penentuan klasifikasi biner. Metrik tersebut adalah *precision, recall, F1-score, dan akurasi*. Metrik *accuracy* adalah nilai yang didapat dari seluruh dokumen yang sukses diprediksi secara benar baik relevan maupun tidak relevan (TP + TN), dibagi dengan seluruh dokumen yang ada (TP + FN + FP + TN). Nilai *precision* didapat dari seluruh dokumen yang direkomendasikan ke user dan user menganggap dokumen tersebut memang relevan artinya dokumen yang benar-benar relevan (TP) dibagi dengan seluruh dokumen yang menurut sistem relevan (TP + FP). *Precision* dapat mengukur berapa banyak paper yang direkomendasikan yang benar-benar relevan. Metrik *Recall* adalah nilai yang didapat dari rekomendasi dokumen yang benar-benar relevan (TP) dibagi dengan semua dokumen yang relevan, ini termasuk dokumen yang benar-benar relevan (TP) dan dokumen yang sebenarnya relevan tetapi tidak direkomendasikan oleh sistem (FP). Terakhir adalah F1-score, *F1-Score* adalah metrik yang menilai keseimbangan antara nilai *precision* dan *recall*
 
+Setelah empat metrik tersebut telah selesai dihitung, hasil nilai masing-masing metrik tertera pada tabel 3. Nilai *precision* menunjukkan 0.8, *recall* model mendapat skor 0.48, *accuracy* model adalah 0.8049, dan *F1-score* adalah 0.6. 
 
+Tabel 3. Nilai metrik hasil evaluasi model rekomendasi
 
+| Metrics | Score |
+|:----------------:|:---------------:|
+| Precision     | 0.8   |
+| Recall     | 0.48  |
+| F1-Score       | 0.6 |
+| Accuracy      | 0.8049 |
 
-
-
-
-
-
-
-
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
-
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
-
-**---Ini adalah bagian akhir laporan---**
 
 _Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
 
+- Untuk projek sistem rekomendasi jurnal ilmiah kali ini, karena penulis hanya menggunakan *dataset* milik orang lain yang berisi kurang dari 100 data, penulis memilih cara evaluasi ini karena penulis masih mampu mengevaluasi data yang hanya sedikit. Apabila projek rekomendasi digunakan pada data yang berjumlah sangat besar cara ini tidak masuk akal karena dokumen terlalu banyak untuk dievaluasi satu per satu, tetapi penulis akan menggunakan metode evaluasi dengan cara *cross-validation*. Cross-validation adalah teknik untuk mengevaluasi model *machine learning* dengan cara melatih model rekomendasi dengan input sebagian dataset atau subset dari dataset (training sets) dan menguji model yang sudah ditrain tersebut dengan menggunakan data yang belum dipakai untuk melatih model (test sets) dalam mengklasifikasikan jurnal yang relevan atau bukan. Untuk menggunakan metode *cross-validation* membutuhkan sample data yang banyak supaya model bisa belajar dengan baik mengklasifikasikan dokumen termasuk ke dalam dokumen relevan atau bukan relevan, dan menghasilkan rekomendasi yang dapat diandalkan.
 
 
 _Referensi:_
@@ -157,3 +167,4 @@ _Referensi:_
 - [Melita, Ria, et al. "Penerapan Metode Term Frequency Inverse Document Frequency (Tf-Idf) Dan Cosine Similarity Pada Sistem Temu Kembali Informasi Untuk Mengetahui Syarah Hadits Berbasis Web (Studi Kasus: Syarah Umdatil Ahkam)." J. Tek. Inform 11.2 (2018): 149-164.](https://pdfs.semanticscholar.org/9602/e7bae1c8b44f4b52e56fdca2b879dca6f1a2.pdf)
 - [Caelen, O. (2017). A Bayesian interpretation of the confusion matrix. Annals of Mathematics and Artificial Intelligence, 81(3–4), 429–450.](https://doi.org/10.1007/s10472-017-9564-8)
 - [Kulkarni, A., Chong, D., & Batarseh, F. A. (2020). Foundations of data imbalance and solutions for a data democracy. Data Democracy: At the Nexus of Artificial Intelligence, Software Development, and Knowledge Engineering, 83–106.](https://doi.org/10.1016/B978-0-12-818366-3.00005-8)
+- [Lahitani, Alfirna Rizqi, Adhistya Erna Permanasari, and Noor Akhmad Setiawan. "Cosine similarity to determine similarity measure: Study case in online essay assessment." 2016 4th International Conference on Cyber and IT Service Management. IEEE, 2016.](https://ieeexplore.ieee.org/abstract/document/7577578/)
