@@ -1,4 +1,4 @@
-# Laporan Proyek Sistem Pencarian Rekomendasi Jurnal Pemrosesan Bahasa Alami berdasarkan Nilai *Cosine similarity* - Muhammad Imam Ariq Sya'bana
+# Laporan Proyek Sistem Pencarian Rekomendasi Jurnal Pemrosesan Bahasa Alami berdasarkan Nilai *cosine similarity* - Muhammad Imam Ariq Sya'bana
 
 ## Domain Proyek
 
@@ -34,28 +34,28 @@ Gambar 4. Sistem perpustakaan digital gagal menemukan dokumen untuk kueri abnorm
 
 Dengan demikian, perbedaan utama antara keduanya adalah dalam pendekatan flexible search Google yang mampu memahami maksud pengguna dan memberikan rekomendasi relevan meskipun kueri tidak sempurna, sementara boolean search perpustakaan digital hanya membandingkan kata-kunci dalam kueri dengan judul dokumen untuk menentukan hasil yang ditampilkan.
 
-Dalam konteks proyek ini, perbedaan pendekatan boolean search dengan sistem rekomendasi modern yang menerapkan machine learning menjadi relevan. Sistem rekomendasi yang dibangun dalam proyek ini menggunakan algoritma *Cosine Similarity* untuk mengukur relevansi dan melakukan rekomendasi berdasarkan nilai-nilai relevansi antara judul-judul dokumen. Pendekatan ini lebih fleksibel dan mampu mengatasi variasi dalam kueri pengguna, seperti kesalahan pengejaan atau variasi kata. Dengan demikian, proyek ini mencoba mengatasi keterbatasan boolean search dengan memanfaatkan teknik machine learning yang lebih modern. Meotde *cosine similarity* ini akan mampu memberikan beberapa rekomendasi dokumen beserta dengan memberikan nilai relevansi dengan kueri yang dimiliki pengguna sebagai pertimbangan pengguna apakah akan menerima dokumen rekomendasi dari sistem atau tidak.  
+Dalam konteks proyek ini, perbedaan pendekatan boolean search dengan sistem rekomendasi modern yang menerapkan machine learning menjadi relevan. Sistem rekomendasi yang dibangun dalam proyek ini menggunakan algoritma *cosine similarity* untuk mengukur relevansi dan melakukan rekomendasi berdasarkan nilai-nilai relevansi antara judul-judul dokumen. Pendekatan ini lebih fleksibel dan mampu mengatasi variasi dalam kueri pengguna, seperti kesalahan pengejaan atau variasi kata. Dengan demikian, proyek ini mencoba mengatasi keterbatasan boolean search dengan memanfaatkan teknik machine learning yang lebih modern. Meotde *cosine similarity* ini akan mampu memberikan beberapa rekomendasi dokumen beserta dengan memberikan nilai relevansi dengan kueri yang dimiliki pengguna sebagai pertimbangan pengguna apakah akan menerima dokumen rekomendasi dari sistem atau tidak.  
 
 ### Problem Statements
 
 - Bagaimana mengembangkan sistem temu kembali informasi dan rekomendasi jurnal ilmiah untuk mengukur nilai relevansi dokumen?
-- Bagaimana mengimplementasikan algoritma Cosine Similarity dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna?
+- Bagaimana mengimplementasikan algoritma *cosine similarity* dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna?
 
 ### Goals
 
-- Mengembangkan sebuah sistem temu kembali informasi dan rekomendasi jurnal ilmiah yang menggunakan algoritma *Cosine Similarity* untuk mengukur nilai relevansi dokumen. Sistem ini akan memanfaatkan model machine learning untuk menghitung kemiripan antara kueri pengguna dengan konten jurnal ilmiah. Tujuannya adalah untuk memberikan pengalaman pencarian yang lebih relevan dan akurat bagi pengguna. Langkah-langkah untuk mewujudkan hal tersebut adalah dengan mengumpulkan data jurnal ilmiah, melakukan pemrosesan teks untuk menghasilkan representasi vektor dokumen, menghitung kemiripan antara vektor query pengguna dan vektor dokumen menggunakan Cosine Similarity.
+- Mengembangkan sebuah sistem temu kembali informasi dan rekomendasi jurnal ilmiah yang menggunakan algoritma *cosine similarity* untuk mengukur nilai relevansi dokumen. Sistem ini akan memanfaatkan model machine learning untuk menghitung kemiripan antara kueri pengguna dengan konten jurnal ilmiah. Tujuannya adalah untuk memberikan pengalaman pencarian yang lebih relevan dan akurat bagi pengguna. Langkah-langkah untuk mewujudkan hal tersebut adalah dengan mengumpulkan data jurnal ilmiah, melakukan pemrosesan teks untuk menghasilkan representasi vektor dokumen, menghitung kemiripan antara vektor queri pengguna dan vektor dokumen menggunakan *cosine similarity*.
   
-- Mengimplementasikan algoritma *Cosine Similarity* dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna. Dalam hal ini, algoritma *Cosine Similarity* akan digunakan untuk mengukur sejauh mana dokumen-dokumen dalam koleksi memiliki relevansi dengan query yang diberikan oleh pengguna. Tujuan utama adalah menyajikan rekomendasi jurnal ilmiah yang paling sesuai dengan preferensi dan kebutuhan pengguna, sehingga memudahkan proses pencarian informasi yang lebih efektif.
+- Mengimplementasikan algoritma *cosine similarity* dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna. Dalam hal ini, algoritma *cosine similarity* akan digunakan untuk mengukur sejauh mana dokumen-dokumen dalam koleksi memiliki relevansi dengan kueri yang diberikan oleh pengguna. Tujuan utama adalah menyajikan rekomendasi jurnal ilmiah yang paling sesuai dengan preferensi dan kebutuhan pengguna, sehingga memudahkan proses pencarian informasi yang lebih efektif.
 
 
 ## Data Understanding
 
-Dataset yang penulis gunakan pada projek ini berisi tentang paper penelitian di dalam domain NLP, dimana di dalam file terdapat beberapa informasi atribut yang dapat digunakan untuk melakukan *information retrieval*. *Dataset* berisi atribut mengenai judul, penulis, tautan, domain, dan subdomain paper. Untuk indeks masing-masing paper didaftarkan ke dalam atribut yang bernamaa Sno.
+Dataset yang penulis gunakan pada projek ini berisi tentang paper penelitian di dalam domain NLP, dimana di dalam file terdapat beberapa informasi atribut yang dapat digunakan untuk melakukan *information retrieval*. *Dataset* berisi atribut mengenai judul, penulis, tautan, domain, dan subdomain paper. Untuk indeks masing-masing paper didaftarkan ke dalam atribut yang bernamaa Index_Paper (Sno).
 
 Tautan ke Research Paper dataset : https://www.kaggle.com/datasets/vijendersingh412/research-paper
 
 ### Variabel-variabel pada Research Paper dataset adalah sebagai berikut:
-- Sno : merupakan tipe data integer yang menunjukkan index masing-masing paper.
+- Index_Paper (Sno): merupakan tipe data integer yang menunjukkan index masing-masing paper.
 - Paper : atribut dengan tipe data string yang menunjukkan judul paper jurnal.
 - Link : atribut dengan tipe data string yang berisi tautan ke paper jurnal di internet.
 - Authors : Atribut dengan tipe data string yang mencantumkan informasi tentang penulis dari paper.
@@ -68,7 +68,7 @@ Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada datase
 
 | Column | Non-Null Count | Dtype |
 |:----------------:|:---------------:|:---------------:|
-| Sno     | 82 non-null   | int64     |
+| Index Paper (Sno)     | 82 non-null   | int64     |
 | Paper     | 82 non-null  | object     |
 | Link       | 82 non-null | object    |
 | Authors       | 82 non-null | object     |
@@ -87,26 +87,31 @@ Eksplorasi data yang terakhir adalah mengecek apakah ada data di dalam dataset y
 
 Di dalam projek ini proses *data preparation* yang dilakukan kebanyakan dilakukan di dalam hal menganalisis data dan memanipulasi data. Pertama-tama dataset di inputkan ke dalam projek dan data tersebut disajikan ke dalam bentuk *dataframe*. *Dataset* yang sudah dimasukkan ke dalam objek *dataframe* akan diakses dan datanya diambil dengan menggunakan fungsi yang ada pada python yang dirujuk dengan metode *integer-based indexing*.
 
-- 1. Memetakan semua atribut yang ada di dataset ke dalam variabelnya masing-masing
+- 1. Melakukan *mapping* semua atribut yang ada di dataset ke dalam variabelnya masing-masing
 
 Untuk sistem rekomendasi dengan menggunakan metode *content based filtering* semua atribut yang ada di dalam dataset berperan penting untuk menentukan hasil perangkingan rekomendasi. Tahapan selanjutnya dalam pembangunan sistem pada proses *modeling* juga diminta untuk memisahkan atribut tertentu saja yang diproses, sehingga tahapan memecah dataset yang sudah diinputkan menjadi bentuk *dataframe* esensial untuk dilakukan. 
  
 - 2. Mengubah tipe data variabel masing-masing atribut dari numpy.ndarray menjadi list
  
-Untuk mempersiapkan tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini, perlu dilakukan konversi tipe data untuk masing-masing variabel atribut dataset. Konversi tipe data ini diperlukan karena tahap *modeling* nantinya akan menerapkan algoritma *Cosine similarity* dengan memanfaatkan *library* yang dimiliki oleh scikit-learn yaitu TfidfVectorizer dan cosine_similarity. Pada *library* tersebut menerima input parameter yang akan mengeluarkan hasil eror jika argumen yang dimasukkan memiliki tipe data numpy.ndarray. Maka dari itu penulis akan merubah tipe data masing-masing variabel atribut menjadi tipe *list*
+Untuk mempersiapkan tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini, perlu dilakukan konversi tipe data untuk masing-masing variabel atribut dataset. Konversi tipe data ini diperlukan karena tahap *modeling* nantinya akan menerapkan algoritma *cosine similarity* dengan memanfaatkan *library* yang dimiliki oleh scikit-learn yaitu TfidfVectorizer dan cosine_similarity. Pada *library* tersebut menerima input parameter yang akan mengeluarkan hasil eror jika argumen yang dimasukkan memiliki tipe data numpy.ndarray. Maka dari itu penulis akan merubah tipe data masing-masing variabel atribut menjadi tipe *list*
+
+- 3. Mempersiapkan queri dan dokumen yang akan digunakan untuk membuat sistem rekomendasi pada tahap *modeling*.
+ 
+Tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini akan membutuhkan dua elemen supaya fungsinya dapat bekerja. Kedua elemen tersebut adalah queri yang diinputkan pengguna dan jurnal ilmiah yang merupakan dokumen yang mengandung kata kunci untuk dirujuk oleh queri pengguna. Queri dalam projek sistem pencarian jurnal ilmiah kali ini adalah suatu kata kunci (*keyword*) yang akan digunakan model untuk merekomendasikan dokumen relevan yang dibutuhkan user pada tahap *modeling*. Input dari pengguna akan dirubah menjadi bentuk string agar bisa di vektorisasi pada tahap *modeling*. Semua judul dokumen jurnal penelitian ilmiah juga perlu dibuat menjadi daftar *string* seperti yang telah dilakukan pada tahap dua data preparation sebelumnya untuk dapat dilakukan vektorisasi dalam tahap *modeling*.
+
 
 ## Modeling
 
-Metode yang digunakan untuk tahap pembuatan model *machine learning* untuk projek *research paper recommendation* adalah *cosine similarity*. *Cosine similarity* dalam projek ini merupakan metode untuk menghitung kesamaan antara dua buah objek yang dinyatakan dalam dua buah vector dengan menggunakan kata kunci dari sebuah dokumen sebagai ukuran. Penulis menggunakan metode ini untuk pengembangan projek *research paper recommendation* karena metode *cosine similarity* memiliki kelebihan-kelebihan yang sangat berguna dan tepat untuk diimplementasikan utuk *information retrieval system* pada jurnal-jurnal ilmiah.
 
-Kelebihan metode *cosine similarity* yang dimanfaatkan pada projek ini diantaranya adalah kemampuan untuk mengukur kesamaan semantik diantara jurnal-jurnal. Kedua, judul yang ada pada masing-masing paper dapat digunakan untuk dirubah menjadi representasi vector numeric dengan menggunakan teknik TF-IDF yang dapat dilakukan dengan menggunakan *library* yang sama seperti cosine_similarity dimiliki juga oleh scikit-learn. Ketiga, *cosine similarity* merupakan metode yang penulis rasa paling tepat untuk diterapkan pada projek ini, mengingat projek ini mengambil pendekatan *content-based recommendation*. Judul yang ada pada paper dijadikan faktor utama untuk menghasilkan rekomendasi jurnal yang paling relevan sesuai dengan keinginan pengguna. Terakhir, hasil keluaran atau hasil rekomendasi dokumen yang dihasilkan oleh metode ini dapat direpresentasikan secara numerik dengan menggunakan nilai *similarity score*. Dokumen yang paling direkomendasikan ke pengguna akan ditampilkan paling atas oleh sistem dengan tambahan keterangan nilai *similarity score* yang dapat digunakan untuk mempertimbangkan relevansi jurnal rekomendasi dengan kueri yang dimasukkan oleh pengguna. Semakin tinggi nilai *similarity score*, maka pengguna dapat semakin yakin bahwa hasil rekomoendasi jurnal yang sistem berikan valid. 
+- 1. Melakukan vektorisasi dengan menggunakan fungsi TF-IDF Vectorizer
 
-
-
+Dalam tahap pembuatan model *machine learning* untuk proyek *research paper recommendation*, metode yang digunakan adalah *cosine similarity*. Metode ini mengukur kesamaan antara dokumen berdasarkan kata kunci dalam bentuk vektor. Kelebihan metode *cosine similarity* yang dimanfaatkan pada projek ini diantaranya adalah kemampuan untuk mengukur kesamaan semantik diantara jurnal-jurnal. Kedua, judul yang ada pada masing-masing paper dapat digunakan untuk dirubah menjadi representasi vector numeric dengan menggunakan teknik TF-IDF yang dapat dilakukan dengan menggunakan *library* yang sama seperti cosine_similarity dimiliki juga oleh scikit-learn. Ketiga, *cosine similarity* merupakan metode yang penulis rasa paling tepat untuk diterapkan pada projek ini, mengingat projek ini mengambil pendekatan *content-based recommendation*. Judul yang ada pada paper dijadikan faktor utama untuk menghasilkan rekomendasi jurnal yang paling relevan sesuai dengan keinginan pengguna. Terakhir, hasil keluaran atau hasil rekomendasi dokumen yang dihasilkan oleh metode ini dapat direpresentasikan secara numerik dengan menggunakan nilai *similarity score*. Dokumen yang paling direkomendasikan ke pengguna akan ditampilkan paling atas oleh sistem dengan tambahan keterangan nilai *similarity score* yang dapat digunakan untuk mempertimbangkan relevansi jurnal rekomendasi dengan kueri yang dimasukkan oleh pengguna. Semakin tinggi nilai *similarity score*, maka pengguna dapat semakin yakin bahwa hasil rekomoendasi jurnal yang sistem berikan valid. 
 
 
 
-Pada tahap *modeling* yang terjadi di projek ini terdapat beebrapa alur utama untuk mendapatkan rekomendasi jurnal yang paling relevan dengan input kueri pengguna. Langkah pertama, pengguna harus memasukkan input berupa judul atau topik pembahasan jurnal ilmiah yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan dokumen jurnal yang ada di *dataset*. Untuk dapat mencocokan kueri pengguna dengan dokumen jurnal di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga judul dokumen yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, kueri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga kueri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor kueri dengan masing-masing vektor dokumen. Rumus *cosine similarity* yang diimplementasikan pada  fungsi ```cosine_similarity``` milik *library* scikit-learn tertera pada persamaan 1.
+- 2. Menghitung nilai *cosine similarity* dengan memanfaatkan fungsi ```cosine_similarity``` yang dimiliki oleh scikit-learn
+
+Pada tahap *modeling* yang terjadi di projek ini terdapat beberapa alur utama untuk mendapatkan rekomendasi jurnal yang paling relevan dengan input kueri pengguna. Langkah pertama, pada tahap *data preparation* pengguna harus memasukkan input berupa judul atau topik pembahasan jurnal ilmiah yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan dokumen jurnal yang ada di *dataset*. Untuk dapat mencocokan kueri pengguna dengan dokumen jurnal di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga judul dokumen yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, kueri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga kueri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor kueri dengan masing-masing vektor dokumen. Rumus *cosine similarity* yang diimplementasikan pada  fungsi ```cosine_similarity``` milik *library* scikit-learn tertera pada persamaan 1.
 
 Persamaan 1. Rumus *cosine similarity*
 
@@ -120,6 +125,8 @@ ${B}$ : Setiap judul jurnal yang ada di dataset yang telah berbentuk vektor sete
 
 ${n}$ : Jumlah seluruh dokumen
 
+
+- 3. Menampilkan hasil rekomendasi jurnal ilmiah beserta dengan nilai kesamaannya dengan queri pengguna
 
 Setelah masing-masing dokumen telah memiliki nilai *cosine similarity*, dokumen yang memiliki nilai  *cosine similarity* bukan nol akan ditampilkan ke pengguna dari dokumen yang memiliki nilai  *cosine similarity* tertinggi ke yang terendah. Dokumen yang nilai  *cosine similarity*-nya sama dengan nol tidak dimunculkan ke pengguna. Jurnal penelitian yang direkomendasikan sistem akan berupa judul jurnal paling relevan diikuti dengan atribut lain dari masing-masing jurnal seperti tautan ke jurnal, penulis, domain, dan subdomain jurnal.    
 
@@ -140,11 +147,22 @@ Tabel 2 diatas menampilkan lima dokumen jurnal ilmiah paling relevan dari keselu
 
 Metode yang digunakan untuk mengevaluasi seberapa baik model sistem rekomendasi jurnal merekomendasikan dokumen yang relevan dengan kueri yang dimasukkan pengguna adalah dengan menggunakan penentuan klasifikasi biner. Metode yang diterapkan akan menilai apakah model merekomendasikan dokumen relevan atau tidak relevan, karena opsi kemungkinan ada dua maka metode klasifikasi biner dipilih dalam projek ini. Apabila dokumen dapat menampilkan dokumen yang relevan dan oleh pengguna juga merasa dokumen yang direkomendasikan itu relevan maka model semakin bagus. Kebalikannya, apabila sistem menampilkan rekomendasi dokumen yang menurut pengguna tidak relevan dengan kueri yang diinputkan, maka model akan dinilai semakin buruk.
 
-Untuk mendapatkan data guna mengevaluasi model sistem rekomendasi tersebut, penulis perlu mengecek satu per satu secara manual apakah jurnal yang direkomendasikan oleh sistem adalah benar relevan. Pada tahap evaluasi model sistem ini penulis mengevaluasi semua jurnal yang direkomendasikan oleh sistem. Apabila sistem memberi nilai kesamaan bukan nol artinya jurnal tersebut adalah relevan menurut sistem. Model yang bekerja dengan baik adalah saat dievaluasi oleh penulis, penulis juga menganggap bahwa dokumen tersebut relevan.  Apabila sistem memberikan rekomendasi jurnal yang salah, karena pada saat di evaluasi oleh penulis, penulis tidak menganggap itu relevan maka akan mengurangi penilaian evaluasi terhadap model. Terakhir model juga akan mendapatkan nilai yang rendah apabila terdapat jurnal yang menurut penulis relevan, tetapi tidak direkomendasikan atau mendapat nilai kesamaan dengan kueri sama dengan nol. Proses penulis mengevaluasi hasil rekomendasi jurnal yang dikeluarkan oleh sistem terlampir di gambar 5.
+Untuk mendapatkan data guna mengevaluasi model sistem rekomendasi tersebut, penulis perlu mengecek satu per satu secara manual apakah jurnal yang direkomendasikan oleh sistem adalah benar relevan. Pada tahap evaluasi model sistem ini penulis mengevaluasi semua jurnal yang direkomendasikan oleh sistem. Apabila sistem memberi nilai kesamaan bukan nol artinya jurnal tersebut adalah relevan menurut sistem. Model yang bekerja dengan baik adalah saat dievaluasi oleh penulis, penulis juga menganggap bahwa dokumen tersebut relevan.  Apabila sistem memberikan rekomendasi jurnal yang salah, karena pada saat di evaluasi oleh penulis, penulis tidak menganggap itu relevan maka akan mengurangi penilaian evaluasi terhadap model. Terakhir model juga akan mendapatkan nilai yang rendah apabila terdapat jurnal yang menurut penulis relevan, tetapi tidak direkomendasikan atau mendapat nilai kesamaan dengan kueri sama dengan nol. Proses penulis mengevaluasi hasil rekomendasi jurnal yang dikeluarkan oleh sistem terlampir di tabel 3.
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/722cf6a4-abef-4b23-ad9c-460daa1f6385)
 
-Gambar 5. Sistem otomasi yang dibuat penulis untuk mempercepat evaluasi hasil jurnal rekomendasi sistem
+Tabel 3. Tabel evaluasi hasil rekomendasi dokumen jurnal ilmiah dari sistem
+
+| | |
+|:----------------:|:---------------:|
+| Nomor Jurnal     | 49   |
+| Judul     | Bidirectional LSTM-CRF Models for Sequence Tagging  |
+| Penulis       | Zhiheng Huang, Wei Xu, Kai Yu |
+| Domain      | NLP |
+| Subdomain      | Sequential Labeling & Information Extraction |
+| queri pengguna   | LSTM network used in Natural Language Processing |
+| Nilai kesamaan dengan queri      | 0.18278553385147825 |
+| Evaluasi kerelevanan dokumen dengan queri     | True |
+
 
 Dalam pengimplementasian klasifikasi biner diperlukan nilai  *True positives* (TP), *True negatives* (TN), *False positives* (FP), dan *False negatives* (FN). True positive (TP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan dengan benar. True negative (TN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan dengan benar. False positive (FP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan pada dokumen tidak relevan. False negative (FN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan pada dokumen relevan.
 
@@ -163,7 +181,7 @@ F1 = $\frac{2 \cdot Precision \cdot Recall}{Precision + Recall}$
  
 Setelah empat metrik tersebut telah selesai dihitung, hasil nilai masing-masing metrik tertera pada tabel 3. Nilai *precision* menunjukkan 0.8, *recall* model mendapat skor 0.48, *accuracy* model adalah 0.8049, dan *F1-score* adalah 0.6. 
 
-Tabel 3. Nilai metrik hasil evaluasi model rekomendasi
+Tabel 4. Nilai metrik hasil evaluasi model rekomendasi
 
 | Metrics | Score |
 |:----------------:|:---------------:|
