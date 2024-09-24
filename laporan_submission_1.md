@@ -34,13 +34,14 @@ Dataset yang penulis gunakan pada projek ini berisi informasi historis tentang h
 
 House Property Sales Time Series (https://www.kaggle.com/datasets/htagholdings/property-sales?select=raw_sales.csv).
 
-### Variabel-variabel pada House Property Sales Time Series dataset adalah sebagai berikut:
+### Penjelasan tentang variabel-variabel pada House Property Sales Time Series dataset yang bersifat mentah, yaitu sebagai berikut:
 - datesold : merupakan tipe data datetime yang menunjukkan kapan data rumah tersebut dijual.
 - postcode : berupa empat digit kode pos dari distrik tempat properti tersebut dijual.
 - price : Harga jual properti yang telah berhasil terjual (Mata uang dari harga rumah di atribut *price* tidak dijelaskan dalam dataset).
 - propertyType : Tipe properti i.e. house atau unit
 - bedrooms : Jumlah kamar tidur
 
+Dataset yang mentah tersebut memiliki data yang berjumlah 29580 dan terdiri dari 5 atribut, yaitu datesold, postcode, price, propertyType, dan bedrooms. Hal tersebut membuat apabila data-data tersebut disusun dalam format tabel baris dan kolom akan membentuk tabel yang berisi oleh 29580 baris dan 5 kolom.
 
 Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan fungsi bawaan dari python yaitu .info() penulis bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bisa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. 
 
@@ -115,6 +116,12 @@ Hasil nilai korelasi dan visualisasi yang ada pada gambar 5 di atas didapatkan d
 
 Gambar 6. Visualisasi grafik untuk mengamati hubungan antara fitur numerik.
 
+Dataset yang diunduh terlihat dalam kondisi yang cukup baik karena tidak memiliki missing value saat dihitung jumlah data kosongnya menggunakan fungsi isna(). Hanya saja data yang dimiliki pada atribut **datesold** memiliki kekurangan karena keterangan tanggal penjualan rumah yang kurang lengkap tiap harinya. Dalam kehidupan nyata, hal tersebut dimungkinkan karenak penjualan rumah di suatu daerah bisa tidak terjadi di setiap harinya. Hal ini yang dapat membuat proses pembangunan model deep learning, seperti time series forecasting menjadi cukup rumit.
+
+![image](https://github.com/user-attachments/assets/0d224287-2790-47ec-abcb-cf2304819e22)
+
+Gambar 7. Kondisi dataset yang tidak memiliki missing value dan data atribut datesold yang tidak lengkap.
+
 ## Data Preparation
 
 - 1. Membuat data iregular menjadi regular
@@ -168,6 +175,16 @@ Tabel 5. Hasil pemetaan dataset menjadi lima *HORIZON* pertama untuk digunakan p
 | 2007-07-15   | 603750.00000  |
 | 2007-07-22   | 687714.31250  |
 | 2007-08-05   | 488833.34375  |
+
+- 3. Penanganan Window Tidak Lengkap saat Membuat Data time series Mentah ke dalam Bentuk Window dan Horizon
+
+Setelah membuat data mentah ke dalam format window dan horizon, penulis telah membagi data mentah ke dalam bentuk window dan horizon yang saling bertumpang tindih. Proses ini memungkinkan model untuk mempelajari pola dalam urutan data dengan melihat sekumpulan data yang berdekatan yang berada sebelum atau setelah masing-masing data dalam satu window, diikuti oleh nilai yang diprediksi dalam horizon. Akan tetapi, pembagian ini menyebabkan beberapa window pada bagian akhir data tidak memiliki elemen yang lengkap atau bahkan kosong. Hal ini terjadi karena jumlah data yang tersedia tidak cukup untuk mengisi window sepenuhnya pada batas akhir dataset, sehingga beberapa window terakhir kehilangan elemen-elemen yang dibutuhkan untuk bisa dipelajari oleh model.
+
+Untuk mengatasi masalah window yang tidak lengkap akibat kekurangan data di bagian akhir, penulis memutuskan untuk menghapus window-window yang mengandung nilai NaN dengan menggunakan dropna(). Dengan langkah ini, hanya window yang memiliki data lengkap yang digunakan dalam analisis lebih lanjut, memastikan bahwa model hanya bekerja dengan data yang valid dan tidak terganggu oleh elemen yang hilang. 
+  
+- 4. Alokasi pembagian data yang sudah berbentuk window dan horizon ke dalam data latih dan uji
+ 
+Setelah data yang tadinya mentah sudah berbentuk pasangan window dan horizon, keseluruhan jumlah pasangan tersebut akan dibagi menjadi dua ke dalam data latih dan data uji. Dari keseluruhan data berbentuk pasangan window dan horizon, 80% akan dialokasikan untuk data latih dan 20% untuk data uji. Pembagian pasangan window dan horizon ke dalam data latih dan data uji tidak dilakukan secara acak. Bagian untuk data latih selalu menggunakan data dalam rentang data paling awal sampai pertengahan data, tergantung dari persentase data latih. Bagian untuk data uji adalah sisa dari data latih, yaitu berada dalam rentang satu data setelah pasangan window dan horizon untuk data latih paling akhir sampai akhir pasangan window dan horizon semula.
 
 ## Modeling
 
