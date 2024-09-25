@@ -261,7 +261,7 @@ Gambar dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss*
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/111bec3a-3c40-402c-af52-5208f8639c20) Gambar 8. Visualisasi hasil training model RNN yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing-masing *epoch*
 
-Dari kedua grafik diatas dapat ditarik kesimpulan bahwa model konvolusi memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan penulis akan menggunakan model konvolusi. Jika melihat dari grafik saja kurang dapat dilihat mana yang nilai MAE-nya lebih kecil karena selisih yang mendekati, maka dari itu penulis akan menarik prediksi nilai MAE dan MSE dari pengujian dan validasi terhadap data validasi. Didapatkan bahwa sesuai dengan performa kecepatan konvergen pada kedua model, model yang lebih cepat konvergen memiliki performa yang lebih baik.  
+Dari kedua grafik diatas dapat ditarik kesimpulan bahwa **model Conv1D memiliki kedua nilai evaluasi model MSE dan MAE jauh lebih kecil daripada model RNN sehingga untuk memprediksi harga yang ada dimasa depan penulis akan menggunakan model Conv1D**. Jika melihat dari grafik saja kurang dapat dilihat mana yang nilai MAE-nya lebih kecil karena selisih yang mendekati, maka dari itu penulis akan menarik prediksi nilai MAE dan MSE dari pengujian dan validasi terhadap data validasi. Didapatkan bahwa sesuai dengan performa kecepatan konvergen pada kedua model, model yang lebih cepat konvergen memiliki performa yang lebih baik.  
 
 ```
 model_conv_results = {'mae': 39565.105, 'mse': 3369372200.0}
