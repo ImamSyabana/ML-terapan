@@ -206,6 +206,25 @@ Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi y
 
 Karena *metrics* yang digunakan untuk mengukur performa model masalah time series kali ini adalah MAE maka hasil training yang terbaik dari kedua model tersebut dapat ditentukan dengan menggunakan parameter loss dan validation loss. Parameter *Loss* adalah parameter yang mengukur sebaik apa model dapat memprediksi target nilai harga rumah sebenarnya pada *training data*. *Validation loss* adalah parameter yang mengukur sebaik mana model dapat memprediksi target nilai harga rumah sebenarnya pada *validation data* yang mana serangkaian data yang terpisah dari *training data*.
 
+Jika dirangkum semua parameter yang digunakan untuk mengkontrol proses pelatihan kedua model dapat tertera pada tabel 6 di bawah.
+
+| **Parameter**             | **Conv1D Model**                                      | **LSTM Model**                                      |
+|---------------------------|-------------------------------------------------------|-----------------------------------------------------|
+| **Input Layer**            | `Lambda(lambda x: tf.expand_dims(x, axis=1))` - Menambahkan dimensi input agar cocok untuk Conv1D | `Input(shape=(WINDOW_SIZE + 1,))` - Menyesuaikan input untuk LSTM dan `Lambda` untuk reshaping |
+| **Hidden Layer 1**         | `Conv1D(64 filters, kernel_size=5, padding="causal", activation="relu")` | `LSTM(64 units, activation="relu", return_sequences=True)` - Mengembalikan urutan lengkap untuk lapisan berikutnya |
+| **Hidden Layer 2**         | `Conv1D(128 filters, kernel_size=5, padding="causal", activation="relu")` | `LSTM(128 units, activation="relu", return_sequences=True)` |
+| **Hidden Layer 3**         | `Conv1D(256 filters, kernel_size=5, padding="causal", activation="relu")` | `LSTM(256 units, activation="relu")` - Tidak mengembalikan urutan, hanya output terakhir |
+| **Output Layer**           | `Dense(HORIZON)`                                      | `Dense(HORIZON)`                                      |
+| **Loss Function**          | `"mae"` (Mean Absolute Error)                         | `"mae"` (Mean Absolute Error)                         |
+| **Optimizer**              | `Adam(learning_rate=0.0001)`                          | `Adam(learning_rate=0.0001)`                          |
+| **Batch Size**             | `64`                                                  | `64`                                                  |
+| **Epochs**                 | `100`                                                 | `100`                                                 |
+| **Validation Data**        | `test_windows, test_labels`                           | `test_windows, test_labels`                           |
+| **Total Parameters**       | Dihitung otomatis melalui `model_conv.summary()`      | Dihitung otomatis melalui `model_rnn.summary()`       |
+| **Activation Functions**   | `relu` (di setiap lapisan Conv1D)                     | `relu` (di setiap lapisan LSTM)                       |
+| **Padding**                | `"causal"` - menjaga urutan time series dalam Conv1D  | Tidak berlaku pada LSTM                               |
+
+
 Gambar 7 dibawah ini adalah grafik yang menggambarkan *loss* dan *validation loss* untuk performa dari model yang menggunakan layer *convolutional* atau *Conv1D layer*. Pada grafik terlihat nilai *loss* dan *validation loss* mampu konvergen lebih cepat daripada model yang menggunakan layer RNN, dapat dilihat pada tahap awal *epochs* sekitar epoch ke-15 nilai *loss* dan *validation loss* sudah mencapai nilai terkecilnya atau sudah konvergen. 
 
 ![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/29dcc936-ce1d-4104-a85f-acc3de87002c) Gambar 7. Visualisasi hasil training model konvolusi yang memberi informasi parameter evaluasi *loss* dan *validation loss* pada masing-masing *epoch*
