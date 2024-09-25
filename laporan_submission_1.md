@@ -196,17 +196,45 @@ Kemampuan belajar yang kuat pada CNN mayoritas disebabkan karena penggunaan bebe
 
 LSTM ditemukan pertama kali oleh Hochreiter dan Schmidhuber pada tahun 1997. LSTM dibuat dengan tujuan untuk menyelesaikan masalah vanishing gradient problem sehingga membuat LSTM mampu menangkap informasi tentang hubungan rangkaian data temporal yang jauh pada data sekuensial. Kemampuan sel memori LSTM untuk mengontrol aliran informasi melewati forget, input, dan output gates berimplikasi pada kemampuan untuk mempertahankan informasi esensial pada rangkaian data yang panjang. Arsitektur sel memori LSTM yang terdiri dari forget gate, input gate, dan output gate.
 
-Setelah mendefinisikan model, langkah selanjutnya adalah mengkompilasi model untuk siap dilatih. Parameter yang perlu didefinisikan saat mengkompilasi model diantaranya adalah loss function dan optimizer. Loss Function Mean Absolute Error (MAE) dipilih sebagai fungsi kerugian karena ini umum digunakan untuk data time series, memberikan penalti linier terhadap perbedaan antara nilai sebenarnya dan prediksi. Optimizer yang didefinisikan adalah Adam optimizer dengan learning rate kecil, yaitu 0.0001, yang membantu menghindari overfitting atau pembelajaran terlalu cepat pada data time series.
+Setelah mendefinisikan model, langkah selanjutnya adalah mengkompilasi model untuk siap dilatih. Parameter yang perlu didefinisikan saat mengkompilasi model diantaranya adalah loss function dan optimizer. Loss Function Mean Absolute Error (MAE) dipilih sebagai fungsi kerugian karena ini umum digunakan untuk data time series, memberikan penalti linier terhadap perbedaan antara nilai sebenarnya dan prediksi. Optimizer yang didefinisikan adalah Adam optimizer dengan learning rate kecil, yaitu 0.0001, yang membantu menghindari overfitting atau pembelajaran terlalu cepat pada data time series. 
 
 Langkah selanjutnya adalah melakukan proses pelatihan model. Model dilatih dengan menggunakan pasangan train window dan label dan nantinya diuji dengan pasangan test window dan label. Pelatihan dilakukan dengan mebuat model membaca bagian-bagian kecil data sampai semua data akhirnya dipelajari model sehingga nilai batch size sebesar 64. Pelatihan dilakukan sebanyak 100 kali dengan mendefinisikan epoch sebesar 100 yang membuat model akan mempelajari seluruh data sebanyak 100 kali.
 
-Hasil proses pelatihan model divisualisasikan untuk dapat melihat loss dan validation loss dari performa setiap epoch. Setelah hasil evaluasi model menunjukkan model sudah baik, model digunakan untuk memprediksi dataset pada porsi data uji. Selanjutnya hasil prediksi dievaluasi dengan menggunakan metrik regresi MAE dan MSE. MAE (Mean Absolute Error) digunakan untuk mengukur seberapa besar rata-rata perbedaan absolut antara prediksi dan nilai sebenarnya. MSE (Mean Squared Error) digunakan untuk mengukur rata-rata kuadrat dari kesalahan prediksi, memberikan penalti lebih besar terhadap kesalahan besar. 
+Hasil proses pelatihan model divisualisasikan untuk dapat melihat loss dan validation loss dari performa setiap epoch. Setelah hasil evaluasi model menunjukkan model sudah baik, model digunakan untuk memprediksi dataset pada porsi data uji. Selanjutnya hasil prediksi dievaluasi dengan menggunakan metrik regresi MAE dan MSE. Mean Absolute Error (MAE) adalah metrik evaluasi regresi yang mampu memberikan informasi tentang rerata dari selisih absolut antara nilai aktual yang dijadikan sebagai target dengan nilai prediksinya. Nilai MAE yang didapatkan dari perhitungan rerata nilai mutlak selisih antara nilai aktual dengan prediksinya membuat perhitungan eror prediksi MAE memiliki nilai dengan satuan unit yang sama dengan data yang dievaluasi. Nilai MAE merepresentasikan besar nilai eror untuk semua data yang diprediksi sehingga nilai MAE yang kecil menandakan prediksi keseluruhan meleset sedikit dari nilai sebenarnya. Sebaliknya, nilai MAE yang besar menunjukkan bahwa prediksi keseluruhan meleset jauh dari nilai sebenarnya. Rumus menghitung MAE tercantum pada Rumus di bawah ini.
 
-Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi yang menggunakan Conv1D berhasil memprediksi harga rumah yang mendekati ke harga aslinya lebih baik dari pada model Recurrent Neural Network yang menggunakan LSTM. Hal tersebut dapat terlihat dari nilai MAE dan MSE model Conv1D yang keduanya lebih kecil dari pada model LSTM. Model Conv1D memiliki nilai MAE dan MSE secara berurutan sebesar 40682.145 dan 3383539700.0, sementara model LSTM memiliki hasil nilai evaluasi MAE dan MSE secara berurutan sebesar 45093.656 dan MSE 4055137000.0. Nilai tersebut didapat pada pelatihan model pertama kali. Nilai-nilai tersebut bisa berubah sedikit dari hasil pelatihan pertama yang bisa disebabkan karena penentuan bobot secara acak pada awal kedua model saat dilatih. 
+
+MAE = $\frac{1}{n} \Sigma_{i=1}^{n} |y_i - \hat{y}_i|$
+
+Keterangan:
+${n}$: Jumlah total titik data dalam data uji atau validasi.
+
+$y_i$: Nilai sebenarnya (ground truth) dari titik data i.
+
+$\hat{y}_i$ : Nilai prediksi dari model untuk titik data i.
+
+
+MSE (Mean Squared Error) digunakan untuk mengukur rata-rata kuadrat dari kesalahan prediksi, memberikan penalti lebih besar terhadap kesalahan besar. Hal tersebut disebabkan karena perhitungan MSE yang melibatkan selisih nilai aktual dan nilai prediksi yang dikuadratkan membuat nilai MSE selalu positif dan membuat MSE bersifat sensitif terhadap nilai eror yang besar. Nilai Mean Squared Error (MSE) adalah metrik evaluasi regresi yang mampu memberikan informasi tentang rerata dari selisih kuadrat antara nilai aktual yang dijadikan sebagai target dengan nilai prediksinya. Nilai MSE yang kecil menandakan prediksi keseluruhan akurat karena meleset sedikit dari nilai sebenarnya. Sebaliknya, nilai MSE yang besar menunjukkan bahwa prediksi keseluruhan meleset jauh dari nilai sebenarnya. Nilai MSE didapatkan dengan menghitung jumlah selisih kuadrat nilai aktual dengan prediksinya yang dibagi dengan jumlah data yang dievaluasi. Hal tersebut membuat nilai MSE memiliki nilai satuan unit yang berbeda dengan data yang dievaluasi. Rumus menghitung MSE tercantum pada Rumus di bawah ini.
+
+MSE = $\frac{1}{n} \Sigma_{i=1}^n({y_i}-\hat{y}_i)^2$
+
+
+${n}$: Jumlah total titik data dalam data uji atau validasi.
+
+$y_i$ : Nilai sebenarnya (ground truth) dari titik data i.
+
+$\hat{y}_i^2$ : Nilai prediksi dari model untuk titik data i.
+
+Setelah melakukan training untuk kedua model, didapatkan bahwa model konvolusi yang menggunakan Conv1D berhasil memprediksi harga rumah yang mendekati ke harga aslinya lebih baik dari pada model Recurrent Neural Network yang menggunakan LSTM. Hal tersebut dapat terlihat dari nilai MAE dan MSE model Conv1D yang keduanya lebih kecil dari pada model LSTM. Model Conv1D memiliki nilai MAE dan MSE secara berurutan sebesar 40682.145 dan 3383539700.0, sementara model LSTM memiliki hasil nilai evaluasi MAE dan MSE secara berurutan sebesar 45093.656 dan MSE 4055137000.0. Nilai tersebut didapat pada pelatihan model pertama kali. Nilai-nilai tersebut bisa berubah sedikit dari hasil pelatihan pertama yang bisa disebabkan karena penentuan bobot secara acak pada awal kedua model saat dilatih. Jika hasil evaluasi dirangkum ke bentuk tabel, hasilnya dapat terlihat di tabel 6.
+
+| **Model**   | **MAE**      | **MSE**           |
+|-------------|--------------|-------------------|
+| Conv1D      | 40,682.145   | 3,383,539,700.0   |
+| LSTM        | 45,093.656   | 4,055,137,000.0   |
+
 
 Karena *metrics* yang digunakan untuk mengukur performa model masalah time series kali ini adalah MAE maka hasil training yang terbaik dari kedua model tersebut dapat ditentukan dengan menggunakan parameter loss dan validation loss. Parameter *Loss* adalah parameter yang mengukur sebaik apa model dapat memprediksi target nilai harga rumah sebenarnya pada *training data*. *Validation loss* adalah parameter yang mengukur sebaik mana model dapat memprediksi target nilai harga rumah sebenarnya pada *validation data* yang mana serangkaian data yang terpisah dari *training data*.
 
-Jika dirangkum semua parameter yang digunakan untuk mengkontrol proses pelatihan kedua model dapat tertera pada tabel 6 di bawah.
+Jika dirangkum semua parameter yang digunakan untuk mengkontrol proses pelatihan kedua model dapat tertera pada tabel 7 di bawah.
 
 | **Parameter**             | **Conv1D Model**                                      | **LSTM Model**                                      |
 |---------------------------|-------------------------------------------------------|-----------------------------------------------------|
