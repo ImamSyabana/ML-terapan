@@ -20,21 +20,14 @@ Permasalahan yang diangkat pada proyek ini berasal dari pengalaman penulis saat 
 
 Selain itu, flexible search memiliki keunggulan dibandingkan dengan boolean search yang lebih tradisional. Pada boolean search, hasil pencarian sangat bergantung pada ketepatan kueri yang dimasukkan, sehingga jika pengguna salah mengetik atau menggunakan kata kunci yang tidak tepat, hasil ayat Al-Qur'an rekomendasi yang ditampilkan bisa saja kurang relevan atau bahkan tidak ada sama sekali. Di sisi lain, flexible search mampu menangani variasi kata kunci dengan lebih dinamis, karena algoritmanya tidak hanya fokus pada kecocokan kata kunci secara literal, tetapi juga pada konteks dan makna kueri. Dengan demikian, flexible search dapat memberikan hasil yang lebih luas dan relevan, meskipun input pengguna tidak sempurna. Hal ini menjadikannya lebih unggul dalam pencarian ayat Al-Qur'an, di mana kompleksitas bahasa dan variasi penulisan sering kali menjadi tantangan tersendiri dalam pencarian berbasis boolean.
 
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/93dcfd73-91da-47b9-99db-2ef3acf52ff6)
-Gambar 3. Sistem perpustakaan digital merekomendasikan sejumlah dokumen berdasarkan kueri normal dari pengguna
+Dengan demikian, perbedaan utama antara keduanya adalah dalam pendekatan flexible search, seperti yang dimiliki Google yang mampu memahami maksud pengguna dan memberikan rekomendasi relevan meskipun kueri tidak sempurna, sementara pendekatan tradisional boolean search  hanya membandingkan kata-kunci dalam kueri dengan judul dokumen untuk menentukan hasil yang ditampilkan.
 
-
-![image](https://github.com/Zelkova46/ML-terapan/assets/70127988/3ceb0e49-cdad-46c9-abbc-c124c89db8c0)
-Gambar 4. Sistem perpustakaan digital gagal menemukan dokumen untuk kueri abnormal dari pengguna
-
-Dengan demikian, perbedaan utama antara keduanya adalah dalam pendekatan flexible search Google yang mampu memahami maksud pengguna dan memberikan rekomendasi relevan meskipun kueri tidak sempurna, sementara boolean search perpustakaan digital hanya membandingkan kata-kunci dalam kueri dengan judul dokumen untuk menentukan hasil yang ditampilkan.
-
-Dalam konteks proyek ini, perbedaan pendekatan boolean search dengan sistem rekomendasi modern yang menerapkan machine learning menjadi relevan. Sistem rekomendasi yang dibangun dalam proyek ini menggunakan algoritma *cosine similarity* untuk mengukur relevansi dan melakukan rekomendasi berdasarkan nilai-nilai relevansi antara judul-judul dokumen. Pendekatan ini lebih fleksibel dan mampu mengatasi variasi dalam kueri pengguna, seperti kesalahan pengejaan atau variasi kata. Dengan demikian, proyek ini mencoba mengatasi keterbatasan boolean search dengan memanfaatkan teknik machine learning yang lebih modern. Meotde *cosine similarity* ini akan mampu memberikan beberapa rekomendasi dokumen beserta dengan memberikan nilai relevansi dengan kueri yang dimiliki pengguna sebagai pertimbangan pengguna apakah akan menerima dokumen rekomendasi dari sistem atau tidak.  
+Dalam konteks proyek ini, perbedaan pendekatan boolean search dengan sistem rekomendasi modern yang menerapkan machine learning menjadi relevan. Sistem rekomendasi yang dibangun dalam proyek ini menggunakan algoritma *cosine similarity* untuk mengukur relevansi dan melakukan rekomendasi berdasarkan nilai-nilai relevansi antara judul-judul dokumen. Pendekatan ini lebih fleksibel dan mampu mengatasi variasi dalam kueri yang dimasukkan pengguna, seperti kesalahan pengejaan atau variasi kata. Dengan demikian, proyek ini mencoba mengatasi keterbatasan boolean search dengan memanfaatkan teknik machine learning yang lebih modern. Meotde *cosine similarity* ini akan mampu memberikan beberapa rekomendasi dokumen beserta dengan memberikan nilai relevansi dengan kueri yang dimiliki pengguna sebagai pertimbangan pengguna apakah akan menerima dokumen rekomendasi dari sistem atau tidak.  
 
 ### Problem Statements
 
-- Bagaimana mengembangkan sistem temu kembali informasi dan rekomendasi jurnal ilmiah untuk mengukur nilai relevansi dokumen?
-- Bagaimana mengimplementasikan algoritma *cosine similarity* dalam proses perankingan dan rekomendasi jurnal ilmiah kepada pengguna?
+- Bagaimana mengembangkan sistem temu kembali informasi atau sistem rekomendasi ayat Al-Qur'an yang memiliki nilai relevansi dengan kata kunci yang dimasukkan?
+- Bagaimana mengimplementasikan algoritma *cosine similarity* dalam proses perankingan dan rekomendasi ayat Al-Qur'an kepada pengguna?
 
 ### Goals
 
