@@ -38,21 +38,18 @@ Dalam konteks proyek ini, perbedaan pendekatan boolean search dengan sistem reko
 
 ## Data Understanding
 
-Dataset yang penulis gunakan pada projek ini berisi tentang paper penelitian di dalam domain NLP, dimana di dalam file terdapat beberapa informasi atribut yang dapat digunakan untuk melakukan *information retrieval*. *Dataset* berisi atribut mengenai judul, penulis, tautan, domain, dan subdomain paper. Untuk indeks masing-masing paper didaftarkan ke dalam atribut yang bernamaa Index_Paper (Sno).
+Dataset yang penulis gunakan pada projek ini meliputi keseluruhan surat dan ayat di dalam Al-Qur'an yang sudah diterjemahkan ke Bahasa Indonesia, di mana di dalam file terdapat beberapa informasi atribut yang dapat digunakan untuk melakukan *information retrieval*. *Dataset* berisi keterangan mengenai nomor surat, ayat, dan isi terjemahannya.
 
-Tautan ke Research Paper dataset : https://www.kaggle.com/datasets/vijendersingh412/research-paper
+Tautan ke dataset Al-Qur'an terjemahan Bahasa Indonesia : https://www.kaggle.com/datasets/zusmani/the-holy-quran/data?select=Indonesian.csv
 
-### Variabel-variabel pada Research Paper dataset adalah sebagai berikut:
-- Index_Paper (Sno): merupakan tipe data integer yang menunjukkan index masing-masing paper.
-- Paper : atribut dengan tipe data string yang menunjukkan judul paper jurnal.
-- Link : atribut dengan tipe data string yang berisi tautan ke paper jurnal di internet.
-- Authors : Atribut dengan tipe data string yang mencantumkan informasi tentang penulis dari paper.
-- Domain : Ranah pembahasan paper, bertipe data string.
-- Subdomain : Bagian dari domain yang berisi tema pembahasan lebih menjurus, bertipe data string. 
+### Variabel-variabel pada dataset Al-Qur'an terjemahan Bahasa Indonesia adalah sebagai berikut:
+- Surat : atribut dengan tipe data integer yang menunjukkan urutan surat dalam Al-Qur'an.
+- Ayat : atribut dengan tipe data integer yang menunjukkan nomor ayat yang berada di dalam surat Al-Qur'an tertentu yang ditunjukkan oleh atribut Surat.
+- Terjemah : Atribut dengan tipe data string yang mencantumkan isi terjemahan Al-Qur'an secara keseluruhan.
 
 Untuk memahami atribut-atribut yang ada di dalam dataset tersebut dilakukan beberapa langkah untuk memahami isi dan tipe atribut tersebut. Pertama, dengan menggunakan fungsi bawaan dari python yaitu .info() penulis bisa mendapatkan bahwa dalam dataset tersebut tidak terdapat data yang kosong dan bisa mengetahui tipe data dari masing-masing atribut yang ada pada dataset. 
 
-Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada dataset *house price*
+Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada dataset Al-Qur'an terjemahan Bahasa Indonesia
 
 | Column | Non-Null Count | Dtype |
 |:----------------:|:---------------:|:---------------:|
