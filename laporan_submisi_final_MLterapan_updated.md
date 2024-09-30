@@ -125,6 +125,16 @@ Tabel 2. Rekomendasi 7 ayat-ayat Al-Qur'an paling relevan keluaran dari sistem
 Tabel 2 diatas menampilkan tujuh ayat-ayat Al-Qur'an terjemahan Indonesua paling relevan dari keselueuhan ayat Al-Qur'an yang ada pada dataset. Tujuh ayat-ayat Al-Qur'an tersebut menurut sistem yang paling relevan jika input kueri dari pengguna yaitu "Riba". 
 
 
+## Evaluasi
+
+Evaluasi yang akan digunakan dalam sistem temu kembali untuk melihat bagaimana hasil pencarian ayat Al-Qur'an dengan nilai relevansi tinggi berada dalam urutan teratas. Dalam kasus ini, kita menggunakan skor cosine similarity untuk mengukur kedekatan antara kueri pengguna dengan ayat-ayat dalam Al-Qur'an yang sudah diolah menggunakan metode TF-IDF. Nilai cosine similarity berkisar antara 0 (tidak mirip) hingga 1 (sangat mirip).
+
+Tahap ini akan mengevaluasi hasil cosine similarity dengan cara mengaudit hasil ayat-ayat Al-Qur'an yang direkomendasikan dari yang memiliki nilai similarity tertinggi hingga terendah bukan nol. Ini membantu untuk mengurangi kebutuhan evaluasi secara menyeluruh pada semua ayat Al-Qur'an dan berfokus pada hasil paling relevan.
+
+Karena sistem mengeluarkan tujuh rekomendasi ayat-ayat Al-Qur'an yang relevan dengan kueri "Riba", maka evaluasi akan dilakukan ke tujuh rekomendasi ayat-ayat Al-Qur'an tersebut. Ditambah tujuh ayat-ayat Al-Qur'an rekomendasi sistem juga masih memiliki nilai relevansi dan bukan bernilai nol. 
+
+Proses evaluasi dimulai dari menilai secara komprehensif satu per satu ayat-ayat Al-Qur'an yang direkomendasikan sistem dengan queri yang diberikan, yaitu "Riba" sekaligus menilai apakah skor relevansi yang dikeluarkan sistem merefleksikan kemiripan topik yang dibicarakan dalam ayat Qur'an tersebut dengan kueri.
+
 _Referensi:_
 
 - [Arguello, Jaime (2013). INLS 509 : Introduction to Information Retrieval.](https://ils.unc.edu/courses/2021_fall/inls509_001/) 
