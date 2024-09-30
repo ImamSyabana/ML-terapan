@@ -53,12 +53,10 @@ Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada datase
 
 | Column | Non-Null Count | Dtype |
 |:----------------:|:---------------:|:---------------:|
-| Index Paper (Sno)     | 82 non-null   | int64     |
-| Paper     | 82 non-null  | object     |
-| Link       | 82 non-null | object    |
-| Authors       | 82 non-null | object     |
-| Domain       | 82 non-null  | object     |
-| Subdomain       | 82 non-null  | object     |
+| Surat     | 6234 non-null  | int64     |
+| Ayat       | 6234 non-null | int64    |
+| terjemah       | 6234 non-null | object     |
+
 
 Pada tahap *data understanding* dilakukan eksplorasi data yang dilakukan untuk mengetahui jumlah data yang unik untuk masing-masing atribut. Dengan mengetahui jumlah data yang unik pada setiap atribut, dapat diketahui seberapa luas koleksi paper yang dikumpulkan pada *dataset* ini.
 
