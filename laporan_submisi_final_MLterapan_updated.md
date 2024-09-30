@@ -58,17 +58,13 @@ Tabel 1. keluaran dari *built-in function* bahasa pemrograman Python pada datase
 | terjemah       | 6234 non-null | object     |
 
 
-Pada tahap *data understanding* dilakukan eksplorasi data yang dilakukan untuk mengetahui jumlah data yang unik untuk masing-masing atribut. Dengan mengetahui jumlah data yang unik pada setiap atribut, dapat diketahui seberapa luas koleksi paper yang dikumpulkan pada *dataset* ini.
-
-Hasil dari eksplorasi data tersebut menunjukkan bahwa ada 82 judul paper yang unik dari keseluruhan 82 data yang ada di dataset, ini menunjukkan tidak ada judul paper yang duplikat. Selanjutnya, pada atribut Link diketahui terdapat 82 tautan unik yang mengarah ke sumber dari masing-masing paper tersebut di internet. Untuk atribut Authors diketahui bahwa terdapat 81 *authors* yang berkontribusi dalam penulisan paper yang ada di dataset ini. Apabila *authors* hanya terdapat 81, sementara jumlah paper keseluruhan ada 82, ini berarti ada satu *author* atau beberapa *authors* yang sama menulis dua judul paper yang berbeda. Untuk atribut selanjutnya adalah domain. Di dalam dataset ini, seperti yang dideskripsikan pada *webiste* kaggle, jurnal yang dikumpulkan berfokus pada paper penelitian pada bidang NLP, sehingga jumlah domain yang unik pada dataset ini hanya ada satu yaitu NLP. Terakhir, untuk atribut Subdomain, terdapat dua belas subdomain yang unik meliputi _***Machine Learning***_, _***Neural Models***_, _***Clustering & Word/Sentence Embeddings***_, _***Topic Models***_, _***Language Modeling***_, _***Segmentation, Tagging, Parsing***_, _***Sequential Labeling & Information Extraction***_, _***Machine Translation & Transliteration***_, _***Sequence-to-Sequence Models***_, _***Coreference Resolution***, ***Automatic Text Summarization***, ***Question Answering and Machine Comprehension***_, _***Generation, Reinforcement Learning***_
-
-Tahap eksplorasi data juga dilanjutkan dengan memeriksa apakah didalam dataset terdapat data yang memiliki atribut dengan nilai kosong atau *null* dengan memanfaatkan fungsi Python ```isnull()``` dan ```sum()``` untuk mengetahui jumlah data yang tidak memiliki nilai. Setelah memeriksa nilai kosong dalam dataset didapatkan data yang nilainya kosong tidak ditemukan, karena jumlah nilai kosong pada dataset berjumlah nol.
+Hasil dari eksplorasi data tersebut menunjukkan bahwa ada 6234 data dari atribut surat, ayat, dan terjeman dari keseluruhan 6234 data yang ada di dataset, baik yang unik maupun berulang. Tahap eksplorasi data juga dilanjutkan dengan memeriksa apakah didalam dataset terdapat data yang memiliki atribut dengan nilai kosong atau *null* dengan memanfaatkan fungsi Python ```isnull()``` dan ```sum()``` untuk mengetahui jumlah data yang tidak memiliki nilai. Setelah memeriksa nilai kosong dalam dataset, didapatkan data yang nilainya kosong tidak ditemukan, karena jumlah nilai kosong pada dataset berjumlah nol.
 
 Eksplorasi data yang terakhir adalah mengecek apakah ada data di dalam dataset yang serupa dengan data yang lain atau disebut duplikat. Setelah mengeksplor dataset untuk menemukan data duplikat dengan menggunakan fungsi ```duplicated()``` dan menjumlahkan data duplikat tersebut dengan menggunakkan fungsi ```sum``` didapatkan jumlah data duplikat adalah nol.
 
-## Data Preparation
+## Data Preparation-
 
-Di dalam projek ini proses *data preparation* yang dilakukan kebanyakan dilakukan di dalam hal menganalisis data dan memanipulasi data. Pertama-tama dataset di inputkan ke dalam projek dan data tersebut disajikan ke dalam bentuk *dataframe*. *Dataset* yang sudah dimasukkan ke dalam objek *dataframe* akan diakses dan datanya diambil dengan menggunakan fungsi yang ada pada python yang dirujuk dengan metode *integer-based indexing*.
+Di dalam projek ini, proses *data preparation* yang dilakukan kebanyakan dilakukan di dalam hal menganalisis data dan memanipulasi data. Pertama-tama dataset di inputkan ke dalam projek dan data tersebut disajikan ke dalam bentuk *dataframe*. *Dataset* yang sudah dimasukkan ke dalam objek *dataframe* akan diakses dan datanya diambil dengan menggunakan fungsi yang ada pada python yang dirujuk dengan metode *integer-based indexing*.
 
 - 1. Melakukan *mapping* semua atribut yang ada di dataset ke dalam variabelnya masing-masing
 
@@ -80,7 +76,7 @@ Untuk mempersiapkan tahap *modeling* yang akan dilakukan setelah tahap *data pre
 
 - 3. Mempersiapkan queri dan dokumen yang akan digunakan untuk membuat sistem rekomendasi pada tahap *modeling*.
  
-Tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini akan membutuhkan dua elemen supaya fungsinya dapat bekerja. Kedua elemen tersebut adalah queri yang diinputkan pengguna dan jurnal ilmiah yang merupakan dokumen yang mengandung kata kunci untuk dirujuk oleh queri pengguna. Queri dalam projek sistem pencarian jurnal ilmiah kali ini adalah suatu kata kunci (*keyword*) yang akan digunakan model untuk merekomendasikan dokumen relevan yang dibutuhkan user pada tahap *modeling*. Input dari pengguna akan dirubah menjadi bentuk string agar bisa di vektorisasi pada tahap *modeling*. Semua judul dokumen jurnal penelitian ilmiah juga perlu dibuat menjadi daftar *string* seperti yang telah dilakukan pada tahap dua data preparation sebelumnya untuk dapat dilakukan vektorisasi dalam tahap *modeling*.
+Tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini akan membutuhkan dua elemen supaya fungsinya dapat bekerja. Kedua elemen tersebut adalah queri yang diinputkan pengguna dan jurnal ilmiah yang merupakan dokumen yang mengandung kata kunci untuk dirujuk oleh queri pengguna. Queri dalam projek sistem pencarian jurnal ilmiah kali ini adalah suatu kata kunci (*keyword*) yang akan digunakan model untuk merekomendasikan dokumen relevan yang dibutuhkan user pada tahap *modeling*. Input dari pengguna akan dirubah menjadi bentuk string agar bisa di vektorisasi pada tahap *modeling*. Semua isi Al-Qur'an terjemahan juga perlu dibuat menjadi daftar *string* seperti yang telah dilakukan pada tahap dua data preparation sebelumnya untuk dapat dilakukan vektorisasi dalam tahap *modeling*.
 
 
 ## Modeling
@@ -88,13 +84,13 @@ Tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini akan m
 
 - 1. Melakukan vektorisasi dengan menggunakan fungsi TF-IDF Vectorizer
 
-Dalam tahap pembuatan model *machine learning* untuk proyek *research paper recommendation*, metode yang digunakan adalah *cosine similarity*. Metode ini mengukur kesamaan antara dokumen berdasarkan kata kunci dalam bentuk vektor. Kelebihan metode *cosine similarity* yang dimanfaatkan pada projek ini diantaranya adalah kemampuan untuk mengukur kesamaan semantik diantara jurnal-jurnal. Kedua, judul yang ada pada masing-masing paper dapat digunakan untuk dirubah menjadi representasi vector numeric dengan menggunakan teknik TF-IDF yang dapat dilakukan dengan menggunakan *library* yang sama seperti cosine_similarity dimiliki juga oleh scikit-learn. Ketiga, *cosine similarity* merupakan metode yang penulis rasa paling tepat untuk diterapkan pada projek ini, mengingat projek ini mengambil pendekatan *content-based recommendation*. Judul yang ada pada paper dijadikan faktor utama untuk menghasilkan rekomendasi jurnal yang paling relevan sesuai dengan keinginan pengguna. Terakhir, hasil keluaran atau hasil rekomendasi dokumen yang dihasilkan oleh metode ini dapat direpresentasikan secara numerik dengan menggunakan nilai *similarity score*. Dokumen yang paling direkomendasikan ke pengguna akan ditampilkan paling atas oleh sistem dengan tambahan keterangan nilai *similarity score* yang dapat digunakan untuk mempertimbangkan relevansi jurnal rekomendasi dengan kueri yang dimasukkan oleh pengguna. Semakin tinggi nilai *similarity score*, maka pengguna dapat semakin yakin bahwa hasil rekomoendasi jurnal yang sistem berikan valid. 
+Dalam tahap pembuatan model *machine learning* untuk proyek sistem temu kembali rekomendasi ayat Al-Qur'an, metode yang digunakan adalah *cosine similarity*. Metode ini mengukur kesamaan antara ayat Al-Qur'an dengan kuerinya berdasarkan kata kunci dalam bentuk vektor. Kelebihan metode *cosine similarity* yang dimanfaatkan pada projek ini diantaranya adalah kemampuan untuk mengukur kesamaan semantik diantara ayat-ayat Al-Qur'an. Kedua, ayat-ayat Al-Qur'an dapat digunakan untuk dirubah menjadi representasi vector numeric dengan menggunakan teknik TF-IDF yang dapat dilakukan dengan menggunakan *library* yang sama seperti cosine_similarity dimiliki juga oleh scikit-learn. Ketiga, *cosine similarity* merupakan metode yang penulis rasa paling tepat untuk diterapkan pada projek ini, mengingat projek ini mengambil pendekatan *content-based recommendation*. Setiap kata yang ada di setiap ayat-ayat Al-Qur'an dijadikan faktor utama untuk menghasilkan rekomendasi ayat-ayat Al-Qur'an yang paling relevan sesuai dengan keinginan pengguna. Terakhir, hasil keluaran atau hasil rekomendasi ayat-ayat Al-Qur'an yang dihasilkan oleh metode ini dapat direpresentasikan secara numerik dengan menggunakan nilai *similarity score*. Ayat-ayat Al-Qur'an yang paling direkomendasikan ke pengguna akan ditampilkan paling atas oleh sistem dengan tambahan keterangan nilai *similarity score* yang dapat digunakan untuk mempertimbangkan relevansi ayat-ayat Al-Qur'an rekomendasi dengan kueri yang dimasukkan oleh pengguna. Semakin tinggi nilai *similarity score*, maka pengguna dapat semakin yakin bahwa hasil rekomoendasi ayat-ayat Al-Qur'an yang sistem berikan valid. 
 
 
 
 - 2. Menghitung nilai *cosine similarity* dengan memanfaatkan fungsi ```cosine_similarity``` yang dimiliki oleh scikit-learn
 
-Pada tahap *modeling* yang terjadi di projek ini terdapat beberapa alur utama untuk mendapatkan rekomendasi jurnal yang paling relevan dengan input kueri pengguna. Langkah pertama, pada tahap *data preparation* pengguna harus memasukkan input berupa judul atau topik pembahasan jurnal ilmiah yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan dokumen jurnal yang ada di *dataset*. Untuk dapat mencocokan kueri pengguna dengan dokumen jurnal di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga judul dokumen yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, kueri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga kueri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor kueri dengan masing-masing vektor dokumen. Rumus *cosine similarity* yang diimplementasikan pada  fungsi ```cosine_similarity``` milik *library* scikit-learn tertera pada persamaan 1.
+Pada tahap *modeling* yang terjadi di projek ini terdapat beberapa alur utama untuk mendapatkan rekomendasi ayat-ayat Al-Qur'an yang paling relevan dengan input kueri pengguna. Langkah pertama, pada tahap *data preparation* pengguna harus memasukkan input berupa kata kunci atau topik pembahasan dalam Al-Qur'an yang ingin dicari. Input dari pengguna akan dirubah menjadi bentuk string yang nantinya model akan mencari kecocokan dengan ayat-ayat Al-Qur'an yang ada di *dataset*. Untuk dapat mencocokan kueri pengguna dengan ayat-ayat Al-Qur'an di dalam dataset, pertama penulis mendefinisikan *object vectorizer* untuk digunakan sebagai *TF-IDF vectorizer*. Objek tersebut digunakan untuk melakukan vektorisasi sehingga setiap kata ayat-ayat Al-Qur'an terjemahan yang berupa kata-kata menjadi bentuk vektor numerik sehingga dapat dilakukan komputasi. Selanjutnya dengan menggunakan *object vectorizer* yang sama, kueri yang diinputkan oleh pengguna juga perlu dilakukan vektorisasi sehingga kueri pengguna yang berupa string juga menjadi bentuk vektor numerik. Langkah vektorisasi tersebut menggunakan ```TfidfVectorizer()``` yang berasal dari *library* scikit-learn. Setelah itu dengan mengunakan ```cosine_similarity``` milik *library* scikit-learn, dilakukan perhitungan nilai *cosine similarity* antara vektor kueri dengan masing-masing vektor dokumen. Rumus *cosine similarity* yang diimplementasikan pada  fungsi ```cosine_similarity``` milik *library* scikit-learn tertera pada persamaan 1.
 
 Persamaan 1. Rumus *cosine similarity*
 
@@ -104,79 +100,29 @@ Keterangan :
 
 ${A}$: kueri dari pengguna yang sudah dalam bentuk vektor setelah melakukan vektorisasi
 
-${B}$ : Setiap judul jurnal yang ada di dataset yang telah berbentuk vektor setelah vektorisasi 
+${B}$ : Setiap ayat-ayat Al-Qur'an yang ada di dataset yang telah berbentuk vektor setelah vektorisasi 
 
-${n}$ : Jumlah seluruh dokumen
-
-
-- 3. Menampilkan hasil rekomendasi jurnal ilmiah beserta dengan nilai kesamaannya dengan queri pengguna
-
-Setelah masing-masing dokumen telah memiliki nilai *cosine similarity*, dokumen yang memiliki nilai  *cosine similarity* bukan nol akan ditampilkan ke pengguna dari dokumen yang memiliki nilai  *cosine similarity* tertinggi ke yang terendah. Dokumen yang nilai  *cosine similarity*-nya sama dengan nol tidak dimunculkan ke pengguna. Jurnal penelitian yang direkomendasikan sistem akan berupa judul jurnal paling relevan diikuti dengan atribut lain dari masing-masing jurnal seperti tautan ke jurnal, penulis, domain, dan subdomain jurnal.    
+${n}$ : Jumlah seluruh ayat Al-Qur'an
 
 
-Tabel 2. Rekomendasi lima dokumen jurnal ilmiah paling relevan keluaran dari sistem
+- 3. Menampilkan hasil rekomendasi ayat-ayat Al-Qur'an beserta dengan nilai kesamaannya dengan queri pengguna
 
-| Index Paper | Judul Paper | Tautan Paper | Penulis Paper | Domain Paper | Sub-Domain Paper | Nilai Kesamaan |
-|-------------|-------------|--------------|---------------|--------------|------------------|----------------|
-| 9           | Natural Language Processing (Almost) from Scratch | [Link](https://www.jmlr.org/papers/volume12/collobert11a/collobert11a.pdf) | Ronan Collobert | NLP | Neural Models | 0.5306739342378072 |
-| 17          | Class-Based n-gram Models of Natural Language | [Link](https://www.aclweb.org/anthology/J92-4003.pdf) | Peter F. Brown, Vincent J. Della Pietra, Peter V. deSouza, Jenifer C. Lai, Robert L. Mercer | NLP | Clustering & Word/Sentence Embeddings | 0.30785002707851433 |
-| 27          | A Bit of Progress in Language Modeling | [Link](https://arxiv.org/pdf/cs/0108005.pdf) | Joshua T. Goodman | NLP | Language Modeling | 0.28713991957257223 |
-| 13          | Understanding LSTM Networks | [Link](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) | Christopher Olah | NLP | Neural Models | 0.26575279920665473 |
-| 49          | Bidirectional LSTM-CRF Models for Sequence Tagging | [Link](https://arxiv.org/pdf/1508.01991.pdf) | Zhiheng Huang, Wei Xu, Kai Yu | NLP | Sequential Labeling & Information Extraction | 0.18278553385147825 |
-
-Tabel 2 diatas menampilkan lima dokumen jurnal ilmiah paling relevan dari keselueuhan dokumen yang ada pada dataset. Lima dokumen tersebut menurut sistem paling relevan jika input kueri dari pengguna yaitu "LSTM network used in Natural Language Processing". Hasil keluaran dari sistem rekomendasi tersebut sebenarnya berjumlah lima belas dokumen jurnal relevan, jumlah tersebut karena ke-15 dokumen tersebut memiliki nilai *cosine similarity*. Tetapi, pada tabel 2 untuk mempersingkat dan efisiensi dalam visualisasi hanya ditampilkan lima dokumen jurnal ilmiah paling relevan saja.
-
-## Evaluation
-
-Metode yang digunakan untuk mengevaluasi seberapa baik model sistem rekomendasi jurnal merekomendasikan dokumen yang relevan dengan kueri yang dimasukkan pengguna adalah dengan menggunakan penentuan klasifikasi biner. Metode yang diterapkan akan menilai apakah model merekomendasikan dokumen relevan atau tidak relevan, karena opsi kemungkinan ada dua maka metode klasifikasi biner dipilih dalam projek ini. Apabila dokumen dapat menampilkan dokumen yang relevan dan oleh pengguna juga merasa dokumen yang direkomendasikan itu relevan maka model semakin bagus. Kebalikannya, apabila sistem menampilkan rekomendasi dokumen yang menurut pengguna tidak relevan dengan kueri yang diinputkan, maka model akan dinilai semakin buruk.
-
-Untuk mendapatkan data guna mengevaluasi model sistem rekomendasi tersebut, penulis perlu mengecek satu per satu secara manual apakah jurnal yang direkomendasikan oleh sistem adalah benar relevan. Pada tahap evaluasi model sistem ini penulis mengevaluasi semua jurnal yang direkomendasikan oleh sistem. Apabila sistem memberi nilai kesamaan bukan nol artinya jurnal tersebut adalah relevan menurut sistem. Model yang bekerja dengan baik adalah saat dievaluasi oleh penulis, penulis juga menganggap bahwa dokumen tersebut relevan.  Apabila sistem memberikan rekomendasi jurnal yang salah, karena pada saat di evaluasi oleh penulis, penulis tidak menganggap itu relevan maka akan mengurangi penilaian evaluasi terhadap model. Terakhir model juga akan mendapatkan nilai yang rendah apabila terdapat jurnal yang menurut penulis relevan, tetapi tidak direkomendasikan atau mendapat nilai kesamaan dengan kueri sama dengan nol. Proses penulis mengevaluasi hasil rekomendasi jurnal yang dikeluarkan oleh sistem terlampir di tabel 3.
+Setelah ayat-ayat Al-Qur'an telah memiliki nilai *cosine similarity*, ayat-ayat Al-Qur'an yang memiliki nilai  *cosine similarity* bukan nol akan ditampilkan ke pengguna dari dokumen yang memiliki nilai  *cosine similarity* tertinggi ke yang terendah. Dokumen yang nilai  *cosine similarity*-nya sama dengan nol tidak dimunculkan ke pengguna. Ayat-ayat Al-Qur'an yang direkomendasikan sistem akan berupa ayat-ayat Al-Qur'an terjemahan paling relevan diikuti dengan atribut lain dari masing-masing ayat Al-Qur'an tersebut, seperti nomor surat dan nomor ayat.    
 
 
-Tabel 3. Tabel evaluasi hasil rekomendasi dokumen jurnal ilmiah dari sistem
+Tabel 2. Rekomendasi 7 ayat-ayat Al-Qur'an paling relevan keluaran dari sistem
 
-| | |
-|:----------------:|:---------------:|
-| Nomor Jurnal     | 49   |
-| Judul     | Bidirectional LSTM-CRF Models for Sequence Tagging  |
-| Penulis       | Zhiheng Huang, Wei Xu, Kai Yu |
-| Domain      | NLP |
-| Subdomain      | Sequential Labeling & Information Extraction |
-| queri pengguna   | LSTM network used in Natural Language Processing |
-| Nilai kesamaan dengan queri      | 0.18278553385147825 |
-| Evaluasi kerelevanan dokumen dengan queri     | True |
+| index | Urutan Surat | Urutan Ayat | Terjemahan Indonesia | nilai kesamaan |
+| --- | --- | --- | --- | --- |
+| 280 | 2 | 275 | Orang-orang yang makan (mengambil) riba tidak dapat berdiri melainkan seperti berdirinya orang yang kemasukan setan lantaran (tekanan) penyakit gila. Keadaan mereka yang demikian itu adalah disebabkan mereka berkata (berpendapat) sesungguhnya jual beli itu sama dengan riba padahal Allah telah menghalalkan jual beli dan mengharamkan riba. Orang-orang yang telah sampai kepadanya larangan dari Tuhannya lalu terus berhenti (dari mengambil riba) maka baginya apa yang telah diambilnya dahulu (sebelum datang larangan) dan urusannya (terserah) kepada Allah. Orang yang mengulangi (mengambil riba) maka orang itu adalah penghuni-penghuni neraka mereka kekal di dalamnya. | 0.5701770468685109 |
+| 284 | 2 | 279 | Maka jika kamu tidak mengerjakan (meninggalkan sisa riba) maka ketahuilah bahwa Allah dan Rasul-Nya akan memerangimu. Dan jika kamu bertobat (dari pengambilan riba) maka bagimu pokok hartamu kamu tidak menganiaya dan tidak (pula) dianiaya. | 0.46703283060831496 |
+| 3445 | 30 | 39 | Dan sesuatu riba (tambahan) yang kamu berikan agar dia bertambah pada harta manusia maka riba itu tidak menambah pada sisi Allah. Dan apa yang kamu berikan berupa zakat yang kamu maksudkan untuk mencapai keridaan Allah maka (yang berbuat demikian) itulah orang-orang yang melipat gandakan (pahalanya). | 0.42593017411211087 |
+| 421 | 3 | 130 | Hai orang-orang yang beriman janganlah kamu memakan riba dengan berlipat ganda dan bertakwalah kamu kepada Allah supaya kamu mendapat keberuntungan. | 0.36168243681967566 |
+| 283 | 2 | 278 | Hai orang-orang yang beriman bertakwalah kepada Allah dan tinggalkan sisa riba (yang belum dipungut) jika kamu orang-orang yang beriman. | 0.35194184741023793 |
+| 281 | 2 | 276 | Allah memusnahkan riba dan menyuburkan sedekah. Dan Allah tidak menyukai setiap orang yang tetap dalam kekafiran dan selalu berbuat dosa. | 0.3407315037752999 |
+| 651 | 4 | 161 | dan disebabkan mereka memakan riba padahal sesungguhnya mereka telah dilarang daripadanya dan karena mereka memakan harta orang dengan jalan yang batil. Kami telah menyediakan untuk orang-orang yang kafir di antara mereka itu siksa yang pedih. | 0.28031661359393045 |
 
-
-Dalam pengimplementasian klasifikasi biner diperlukan nilai  *True positives* (TP), *True negatives* (TN), *False positives* (FP), dan *False negatives* (FN). True positive (TP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan dengan benar. True negative (TN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan dengan benar. False positive (FP) adalah nilai seberapa banyak model mampu memprediksi dokumen relevan pada dokumen tidak relevan. False negative (FN) adalah nilai seberapa banyak model mampu memprediksi dokumen tidak relevan pada dokumen relevan.
-
-Untuk melakukan hal tersebut kali ini akan diterapkan beberapa metrik untuk melakukan evaluasi penentuan klasifikasi biner. Metrik tersebut adalah *precision, recall, F1-score, dan akurasi*. Metrik *accuracy* adalah nilai yang didapat dari seluruh dokumen yang sukses diprediksi secara benar baik relevan maupun tidak relevan (TP + TN), dibagi dengan seluruh dokumen yang ada (TP + FN + FP + TN). Nilai *precision* didapat dari seluruh dokumen yang direkomendasikan ke user dan user menganggap dokumen tersebut memang relevan artinya dokumen yang benar-benar relevan (TP) dibagi dengan seluruh dokumen yang menurut sistem relevan (TP + FP). *Precision* dapat mengukur berapa banyak paper yang direkomendasikan yang benar-benar relevan. Metrik *Recall* adalah nilai yang didapat dari rekomendasi dokumen yang benar-benar relevan (TP) dibagi dengan semua dokumen yang relevan, ini termasuk dokumen yang benar-benar relevan (TP) dan dokumen yang sebenarnya relevan tetapi tidak direkomendasikan oleh sistem (FP). Terakhir adalah F1-score, *F1-Score* adalah metrik yang menilai keseimbangan antara nilai *precision* dan *recall*. Formula metrik *precision, recall, F1-score, dan akurasi* tertulis pada persamaan 2.
-
-Persamaan 2. Rumus *precision, recall, F1-score, dan akurasi*
-
-Accuracy = $\frac{TP+TN}{TP+TN+FP+FN}$
-
-Precision = $\frac{TP}{TP+FP}$
-
-Recall = $\frac{TP}{TP+FN}$
-
-F1 = $\frac{2 \cdot Precision \cdot Recall}{Precision + Recall}$
-
- 
-Setelah empat metrik tersebut telah selesai dihitung, hasil nilai masing-masing metrik tertera pada tabel 3. Nilai *precision* menunjukkan 0.8, *recall* model mendapat skor 0.48, *accuracy* model adalah 0.8049, dan *F1-score* adalah 0.6. 
-
-Tabel 4. Nilai metrik hasil evaluasi model rekomendasi
-
-| Metrics | Score |
-|:----------------:|:---------------:|
-| Precision     | 0.8   |
-| Recall     | 0.48  |
-| F1-Score       | 0.6 |
-| Accuracy      | 0.8049 |
-
-
-_Catatan:_
-
-- Untuk projek sistem rekomendasi jurnal ilmiah kali ini, karena penulis hanya menggunakan *dataset* milik orang lain yang berisi kurang dari 100 data, penulis memilih cara evaluasi ini karena penulis masih mampu mengevaluasi data yang hanya sedikit. Apabila projek rekomendasi digunakan pada data yang berjumlah sangat besar cara ini tidak masuk akal karena dokumen terlalu banyak untuk dievaluasi satu per satu, tetapi penulis akan menggunakan metode evaluasi dengan cara *cross-validation*. Cross-validation adalah teknik untuk mengevaluasi model *machine learning* dengan cara melatih model rekomendasi dengan input sebagian dataset atau subset dari dataset (training sets) dan menguji model yang sudah ditrain tersebut dengan menggunakan data yang belum dipakai untuk melatih model (test sets) dalam mengklasifikasikan jurnal yang relevan atau bukan. Untuk menggunakan metode *cross-validation* membutuhkan sample data yang banyak supaya model bisa belajar dengan baik mengklasifikasikan dokumen termasuk ke dalam dokumen relevan atau bukan relevan, dan menghasilkan rekomendasi yang dapat diandalkan. Karena jumlah data yang ada pada dataset yang digunakan pada projek ini hanya sedikit, maka metode evaluasi *cross-validation* tidak dapat digunakan.
+Tabel 2 diatas menampilkan tujuh ayat-ayat Al-Qur'an terjemahan Indonesua paling relevan dari keselueuhan ayat Al-Qur'an yang ada pada dataset. Tujuh dokumen tersebut menurut sistem yang paling relevan jika input kueri dari pengguna yaitu "Riba". 
 
 
 _Referensi:_
