@@ -135,6 +135,60 @@ Karena sistem mengeluarkan tujuh rekomendasi ayat-ayat Al-Qur'an yang relevan de
 
 Proses evaluasi dimulai dari menilai secara komprehensif satu per satu ayat-ayat Al-Qur'an yang direkomendasikan sistem dengan queri yang diberikan, yaitu "Riba" sekaligus menilai apakah skor relevansi yang dikeluarkan sistem merefleksikan kemiripan topik yang dibicarakan dalam ayat Qur'an tersebut dengan kueri.
 
+Berikut adalah hasil evaluasi ke-7 ayat teratas berdasarkan nilai cosine similarity:
+
+Rank 1:
+Surat: Al-Baqarah (Surat ke-2), Ayat ke-275
+Nilai Similarity: 0.57018
+Terjemahan Ayat: "Orang-orang yang makan (mengambil) riba tidak dapat berdiri melainkan seperti berdirinya orang yang kemasukan setan lantaran (tekanan) penyakit gila. Keadaan mereka yang demikian itu adalah disebabkan mereka berkata (berpendapat) sesungguhnya jual beli itu sama dengan riba padahal Allah telah menghalalkan jual beli dan mengharamkan riba. Orang-orang yang telah sampai kepadanya larangan dari Tuhannya lalu terus berhenti (dari mengambil riba) maka baginya apa yang telah diambilnya dahulu (sebelum datang larangan) dan urusannya (terserah) kepada Allah. Orang yang mengulangi (mengambil riba) maka orang itu adalah penghuni-penghuni neraka mereka kekal di dalamnya."
+Evaluasi: Relevan. Ayat ini berbicara secara langsung tentang orang-orang yang mengambil riba dan dampaknya, yang sangat relevan dengan kueri "Riba". Ayat ini merupakan salah satu ayat paling sering dikutip dalam diskusi tentang riba.
+
+Rank 2:
+Surat: Al-Baqarah (Surat ke-2), Ayat ke-279
+Nilai Similarity: 0.46703
+Terjemahan Ayat: "Maka jika kamu tidak mengerjakan (meninggalkan sisa riba) maka ketahuilah bahwa Allah dan Rasul-Nya akan memerangimu. Dan jika kamu bertobat (dari pengambilan riba) maka bagimu pokok hartamu kamu tidak menganiaya dan tidak (pula) dianiaya."
+Evaluasi: Relevan. Ayat ini memperingatkan tentang perang terhadap mereka yang tetap berurusan dengan riba, yang sangat relevan dengan kueri karena riba adalah fokus utama dalam ayat tersebut.
+
+Rank 3:
+Surat: Ar-Rum (Surat ke-30), Ayat ke-39
+Nilai Similarity: 0.42593
+Terjemahan Ayat: "Dan sesuatu riba (tambahan) yang kamu berikan agar dia bertambah pada harta manusia maka riba itu tidak menambah pada sisi Allah. Dan apa yang kamu berikan berupa zakat yang kamu maksudkan untuk mencapai keridaan Allah maka (yang berbuat demikian) itulah orang-orang yang melipat gandakan (pahalanya)."
+Evaluasi: Relevan. Ayat ini membahas tentang riba secara langsung, dan memberikan perbandingan antara riba dan zakat. Fokusnya tetap pada riba, sehingga relevan dengan kueri.
+
+Rank 4:
+Surat: Ali 'Imran (Surat ke-3), Ayat ke-130
+Nilai Similarity: 0.36168
+Terjemahan Ayat: "Hai orang-orang yang beriman janganlah kamu memakan riba dengan berlipat ganda dan bertakwalah kamu kepada Allah supaya kamu mendapat keberuntungan."
+Evaluasi: Relevan. Ayat ini secara eksplisit melarang pengambilan riba dengan cara berlipat ganda, yang sangat terkait dengan kueri. Meskipun nilainya lebih rendah, isinya masih sangat relevan.
+
+Rank 5:
+Surat: Al-Baqarah (Surat ke-2), Ayat ke-ke-278
+Nilai Similarity: 0.35194
+Terjemahan Ayat: "Hai orang-orang yang beriman bertakwalah kepada Allah dan tinggalkan sisa riba (yang belum dipungut) jika kamu orang-orang yang beriman."
+Komentar: Relevan. Ini adalah ayat yang memerintahkan umat Islam untuk meninggalkan sisa riba, yang secara jelas relevan dengan kueri yang berfokus pada riba.
+
+Rank 6:
+Surat: Al-Baqarah (Surat ke-2), Ayat ke-ke-276
+Nilai Similarity: 0.34073
+Terjemahan Ayat: "Allah memusnahkan riba dan menyuburkan sedekah. Dan Allah tidak menyukai setiap orang yang tetap dalam kekafiran dan selalu berbuat dosa."
+Komentar: Relevan. Ayat ini berbicara tentang konsekuensi dari mengambil riba dan menyebutkan bagaimana Allah memusnahkan riba, yang sangat relevan dengan kueri.
+
+Rank 7:
+Surat: An-Nisa' (Surat ke-4), Ayat ke-ke-161
+Nilai Similarity: 0.28032
+Terjemahan Ayat: "dan disebabkan mereka memakan riba padahal sesungguhnya mereka telah dilarang daripadanya dan karena mereka memakan harta orang dengan jalan yang batil. Kami telah menyediakan untuk orang-orang yang kafir di antara mereka itu siksa yang pedih."
+Komentar: Relevan. Meskipun nilai similarity lebih rendah, ayat ini masih berbicara tentang riba dan larangannya, jadi tetap relevan dengan kueri yang diberikan.
+
+# Kesimpulan
+
+Dari hasil evaluasi di atas, dapat disimpulkan bahwa semua ayat yang dihasilkan memiliki relevansi yang tinggi dengan kueri "Riba" baik yang memiliki skor relevansi tinggi maupun rendah. Hal ini ditunjukkan oleh adanya pembahasan langsung tentang riba di setiap ayat yang tercantum dalam hasil. 
+
+Dalam hal tingkat relevansi, semua hasil rekomendasi membahas riba secara langsung atau menyebutkan larangan dan konsekuensinya. Ayat-ayat ini memang ayat-ayat yang terkenal dalam Al-Qur'an terkait riba. Meskipun beberapa ayat memiliki nilai similarity yang lebih rendah (di bawah 0.4), isinya masih sangat relevan karena mereka berbicara langsung tentang riba.
+
+Semua hasil yang direkomendasikan sisem termasuk sudah bisa dibilang relevan karena setelah dievaluasi semua ayatnya berbicara tentang aspek-aspek terkait riba, baik dari segi larangan, konsekuensi, maupun peringatan tentang riba. Ayat-ayat ini mencakup berbagai aspek dari riba, seperti larangan (Surat Al-Baqarah ayat 275 dan 279), dampak bagi pelaku (Al-Baqarah ayat 275), serta perbedaan antara riba dan zakat (Surat Ar-Rum ayat 39).
+
+Cara evaluasi seperti ini efisien karena kita hanya perlu mengevaluasi sejumlah kecil hasil dokumen yang memiliki skor relevanso. Ini cocok digunakan jika dataset terlalu besar, seperti dataset Al-Qur'an terjemahan Bahasa Indonesia dalam projek ini. Kelemahan dari cara evaluasi ini muncul akibat evaluasi hanya dilakukan pada hasil rekomendasi sistem yang memiliki skor relevansi saja, tidak secara menyeluruh. Maka dari itu, tidak bisa dipastikan apakah masih ada ayat yang memiliki topik relevan dengan kueri yang tidak memiliki skor relevansi. 
+
 _Referensi:_
 
 - [Arguello, Jaime (2013). INLS 509 : Introduction to Information Retrieval.](https://ils.unc.edu/courses/2021_fall/inls509_001/) 
