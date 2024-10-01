@@ -1,6 +1,6 @@
 # Laporan Proyek Sistem Pencarian Rekomendasi Ayat Al-Qur'an terjemahan yang terkait berdasarkan Nilai *cosine similarity* - Muhammad Imam Ariq Sya'bana
 
-## Domain Proyek
+## Project Overview
 
 Information Retrieval (IR) merupakan bidang yang berkaitan dengan struktur, analisis, organisasi, penyimpanan, pencarian, dan pengambilan informasi. Pada dasarnya, IR berfokus pada bagaimana kita bisa menemukan dan mengambil informasi yang relevan dari kumpulan data yang ada. Dalam konteks modern, kemajuan teknologi telah membuat proses pengumpulan informasi menjadi lebih mudah dan efisien.
 
@@ -79,7 +79,7 @@ Untuk mempersiapkan tahap *modeling* yang akan dilakukan setelah tahap *data pre
 Tahap *modeling* yang akan dilakukan setelah tahap *data preparation* ini akan membutuhkan dua elemen supaya fungsinya dapat bekerja. Kedua elemen tersebut adalah queri yang diinputkan pengguna dan ayat-ayat Al-Qur'an yang merupakan dokumen yang mengandung kata kunci untuk dirujuk oleh queri pengguna. Queri dalam projek sistem pencarian ayat-ayat Al-Qur'an relevan kali ini adalah suatu kata kunci (*keyword*) yang akan digunakan model untuk merekomendasikan ayat-ayat Al-Qur'an relevan yang dibutuhkan user pada tahap *modeling*. Input dari pengguna akan dirubah menjadi bentuk string agar bisa di vektorisasi pada tahap *modeling*. Semua isi Al-Qur'an terjemahan juga perlu dibuat menjadi daftar *string* seperti yang telah dilakukan pada tahap dua data preparation sebelumnya untuk dapat dilakukan vektorisasi dalam tahap *modeling*.
 
 
-## Modeling
+## Modeling and Results
 
 
 - 1. Melakukan vektorisasi dengan menggunakan fungsi TF-IDF Vectorizer
