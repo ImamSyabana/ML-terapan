@@ -178,6 +178,13 @@ Nilai Similarity: 0.28032
 Terjemahan Ayat: "dan disebabkan mereka memakan riba padahal sesungguhnya mereka telah dilarang daripadanya dan karena mereka memakan harta orang dengan jalan yang batil. Kami telah menyediakan untuk orang-orang yang kafir di antara mereka itu siksa yang pedih."
 Komentar: Relevan. Meskipun nilai similarity lebih rendah, ayat ini masih berbicara tentang riba dan larangannya, jadi tetap relevan dengan kueri yang diberikan.
 
+Setelah menilai semua hasil rekomendasi sistem ayat-ayat Al_Qur'an yang relevan dengan kueri "Riba", diketahui dari ke-7 rekomendasi yang diberikan sistem terdapat 7 rekomendasi yang memang dinilai relevan dengan kata kunci "Riba". Dengan kata lain, semua ayat terjemahan yang diberikan oleh sistem berbicara tentang Riba.
+
+Selanjutnya tahap evaluasi dilanjutkan dengan melakukan evaluasi precision. Metrik precision adalah salah satu metrik yang digunakan dalam sistem pencarian untuk mengukur seberapa relevan hasil pencarian dibandingkan dengan jumlah total item yang direkomendasikan. Precision didefinisikan sebagai perbandingan antara jumlah hasil yang relevan dengan jumlah total item yang direkomendasikan, dinyatakan sebagai:
+
+Recommender System Precision = $\frac{\text{Jumlah hasil rekomendasi yang benar relevan}}{\text{Jumlah hasil rekomendasi oleh sistem yang relevan}}$
+
+
 # Kesimpulan
 
 Dari hasil evaluasi di atas, dapat disimpulkan bahwa semua ayat yang dihasilkan memiliki relevansi yang tinggi dengan kueri "Riba" baik yang memiliki skor relevansi tinggi maupun rendah. Hal ini ditunjukkan oleh adanya pembahasan langsung tentang riba di setiap ayat yang tercantum dalam hasil. 
