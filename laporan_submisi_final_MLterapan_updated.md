@@ -182,8 +182,15 @@ Setelah menilai semua hasil rekomendasi sistem ayat-ayat Al_Qur'an yang relevan 
 
 Selanjutnya tahap evaluasi dilanjutkan dengan melakukan evaluasi precision. Metrik precision adalah salah satu metrik yang digunakan dalam sistem pencarian untuk mengukur seberapa relevan hasil pencarian dibandingkan dengan jumlah total item yang direkomendasikan. Precision didefinisikan sebagai perbandingan antara jumlah hasil yang relevan dengan jumlah total item yang direkomendasikan, dinyatakan sebagai:
 
-Recommender System Precision = $\frac{\text{Jumlah hasil rekomendasi yang benar relevan}}{\text{Jumlah hasil rekomendasi oleh sistem yang relevan}}$
+Recommender System Precision = $\frac{\text{Jumlah hasil rekomendasi sistem yang benar relevan}}{\text{Jumlah rekomendasi yang dihasilkan oleh sistem}}$
+ 
+Sistem merekomendasikan 7 ayat yang memiliki nilai similarity tertentu dengan kueri "Riba". Maka dari itu, Jumlah rekomendasi yang dihasilkan oleh sistem ke pengguna berjumlah 7. Selanjutnya, berdasarkan proses evaluasi rekomendasi ayat relevan oleh sistem satu per satu sebelumnya, sudah diidentifikasi bahwa semua ayat-ayat Al-Qur'an yang direkomendasikan oleh sistem relevan dengan kueri "Riba", karena mereka membahas tema tersebut secara eksplisit. Maka dari itu, hasil rekomendasi sistem yang benar relevan berjumlah 7 juga.
 
+Apabila dihitung nilai precision menggunakan rumus metrik precision sebelumnya, 
+
+Precision =  $\frac{\text{7}} {\text{7}} = 1$
+
+Precision dalam kasus ini adalah 1 atau 100%, karena semua ayat yang direkomendasikan oleh program relevan dengan kueri "Riba". Ini berarti program berhasil memberikan hasil yang sangat tepat sesuai dengan kueri, tanpa ada hasil yang tidak relevan. Precision akan menurun jika ada ayat-ayat yang direkomendasikan tetapi tidak relevan dengan tema kueri. Dalam kasus ini yang menggunakan kueri "Riba", precision tetap pada nilai maksimal karena tidak ada ayat yang tidak relevan. Precision tinggi menunjukkan bahwa algoritma pencarian bekerja dengan sangat baik dalam menemukan ayat-ayat yang relevan. Nilai precision dapat berubah-ubah sesuai dengan baik tidaknya sistem memberikan rekomendasi relevan dengan variasi kueri yang lain.
 
 # Kesimpulan
 
@@ -193,7 +200,7 @@ Dalam hal tingkat relevansi, semua hasil rekomendasi membahas riba secara langsu
 
 Semua hasil yang direkomendasikan sisem termasuk sudah bisa dibilang relevan karena setelah dievaluasi semua ayatnya berbicara tentang aspek-aspek terkait riba, baik dari segi larangan, konsekuensi, maupun peringatan tentang riba. Ayat-ayat ini mencakup berbagai aspek dari riba, seperti larangan (Surat Al-Baqarah ayat 275 dan 279), dampak bagi pelaku (Al-Baqarah ayat 275), serta perbedaan antara riba dan zakat (Surat Ar-Rum ayat 39).
 
-Cara evaluasi seperti ini efisien karena kita hanya perlu mengevaluasi sejumlah kecil hasil dokumen yang memiliki skor relevanso. Ini cocok digunakan jika dataset terlalu besar, seperti dataset Al-Qur'an terjemahan Bahasa Indonesia dalam projek ini. Kelemahan dari cara evaluasi ini muncul akibat evaluasi hanya dilakukan pada hasil rekomendasi sistem yang memiliki skor relevansi saja, tidak secara menyeluruh. Maka dari itu, tidak bisa dipastikan apakah masih ada ayat yang memiliki topik relevan dengan kueri yang tidak memiliki skor relevansi. 
+Berdasarkan hasil perhitungan, karena dari 7 ayat yang direkomendasikan sistem terdapat 7 ayat yang relevan dengan kueri sehingga nilai precision yang diperoleh adalah 1.0, yang menunjukkan bahwa sistem secara sempurna memberikan rekomendasi ayat-ayat yang berkaitan dengan kueri "Riba". Semua ayat yang direkomendasikan oleh sistem terbukti relevan dengan topik yang diminta, sehingga sistem bekerja dengan sangat baik dalam mengidentifikasi dan mengurutkan ayat yang berhubungan dengan riba.
 
 _Referensi:_
 
